@@ -22,4 +22,28 @@ public class VehiculoService {
         this.dao = new VehiculoDAO();
         this.vehiculos = dao.cargarTodos();
     }
+    
+    public String registrarVehiculo(String tipo, String placa, String ruta) {
+        if (buscarPorPlaca(placa) != null)
+            return "ERROR: Ya existe un vehiculo con la placa " + placa;
+        if (placa == null || placa.trim().isEmpty())
+            return "ERROR: La placa no puede estar vacia.";
+        if (ruta == null || ruta.trim().isEmpty())
+            return "ERROR: La ruta no puede estar vacia.";
+
+        Vehiculo v;
+        switch (tipo.toLowerCase()) {
+            case "buseta":   v = new Buseta(placa.toUpperCase(), ruta);  
+            break;
+            case "bus":      v = new Bus(placa.toUpperCase(), ruta);      
+            break;
+            case "microbus": v = new Microbus(placa.toUpperCase(), ruta); 
+            break;
+            default: return "ERROR: Tipo de vehiculo no reconocido.";
+        }
+
+        vehiculos.add(v);
+        dao.guardar(v);
+        return "OK: Vehiculo " + tipo + " con placa " + placa + " registrado correctamente.";
+    }
 }
