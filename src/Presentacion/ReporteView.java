@@ -9,22 +9,27 @@ package Presentacion;
  * @author santi
  */
 public class ReporteView {
-        public ReporteView(){
-    
+
+    public ReporteView() {
+
     }
-           public void mostrarMenu() {
-           
-           }
-           
-               private void reporteTotalRecaudado() {
-               
-               }
-                   private void reporteVehiculoConMasTickets() {
-                   }
+
+    public void mostrarMenu() {
+
+    }
+
+    private void reporteTotalRecaudado() {
+
+    }
+
+    private void reporteVehiculoConMasTickets() {
+    }
+
     private void reporteTicketsPorVehiculo() {
     }
-      private int leerInt() {
-          return 0;
-      
-      }
+
+    private int leerInt() {
+        return 0;
+
+    }
 }
