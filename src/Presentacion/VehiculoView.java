@@ -18,4 +18,7 @@ public class VehiculoView {
              private void registrarVehiculo() {
              }
                  private void listarVehiculos() {}
+                     private void buscarPorPlaca() {
+                     
+                     }
 }
