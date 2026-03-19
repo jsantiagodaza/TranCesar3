@@ -57,10 +57,8 @@ public class TicketService {
     return String.format("OK: Ticket #%d generado. Valor: $%,.0f", t.getId(), t.getValorFinal());
     
 }
-    
-    
-    
-    
-  
-    
+    public List<Ticket> listarTodos() {
+    return new ArrayList<>(tickets);
+    }
+      
 }
