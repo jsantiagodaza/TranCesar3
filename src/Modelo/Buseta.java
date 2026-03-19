@@ -8,20 +8,21 @@ package Modelo;
  *
  * @author 2jcue
  */
-public class Microbus extends Vehiculo {
 
-    public Microbus(String placa, String ruta) {
+public class Buseta extends Vehiculo {
+
+    public Buseta(String placa, String ruta) {
         super(placa, ruta);
-        this.capacidadMaxima = 25;
-        this.tarifaBase = 10000;
+        this.capacidadMaxima = 19;
+        this.tarifaBase = 8000;
     }
 
     @Override
-    public String getTipo() { return "MicroBus"; }
+    public String getTipo() { return "Buseta"; }
 
     @Override
     public void imprimirDetalle() {
-        System.out.println("========== MICROBUS ==========");
+        System.out.println("========== BUSETA ==========");
         System.out.println("Placa           : " + placa);
         System.out.println("Ruta            : " + ruta);
         System.out.println("Capacidad máx.  : " + capacidadMaxima);
@@ -29,10 +30,6 @@ public class Microbus extends Vehiculo {
         System.out.println("Cupos disponib. : " + getCuposDisponibles());
         System.out.println("Tarifa base     : $" + String.format("%,.0f", tarifaBase));
         System.out.println("Disponible      : " + (disponible ? "Sí" : "No"));
-        System.out.println("==============================");
+        System.out.println("============================");
     }
 }
-
-  
-
-
