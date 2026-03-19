@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Ticket implements Imprimible, Calculable {
     private static int contadorId = 1;
@@ -37,6 +38,26 @@ public Ticket(int id, Pasajero pasajero, Vehiculo vehiculo,
     if (id >= contadorId) contadorId = id + 1;
 }
     
+    @Override
+public double calcularTotal() {
+    double descuento = pasajero.calcularDescuento();
+    return vehiculo.getTarifaBase() * (1 - descuento);
+}
+
+@Override
+public void imprimirDetalle() {
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    System.out.println("========== TICKET #" + id + " ==========");
+    System.out.println("Pasajero  : " + pasajero.getNombre() + " (" + pasajero.getCedula() + ")");
+    System.out.println("Tipo      : " + pasajero.getTipo());
+    System.out.println("Vehiculo  : " + vehiculo.getTipo() + " - Placa: " + vehiculo.getPlaca());
+    System.out.println("Ruta      : " + origen + " → " + destino);
+    System.out.println("Fecha     : " + fechaCompra.format(fmt));
+    System.out.println("Tarifa    : $" + String.format("%,.0f", vehiculo.getTarifaBase()));
+    System.out.println("Descuento : " + (int)(pasajero.calcularDescuento() * 100) + "%");
+    System.out.println("TOTAL     : $" + String.format("%,.0f", valorFinal));
+    System.out.println("=====================================");
+}
     
     
     
