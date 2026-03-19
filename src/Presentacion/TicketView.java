@@ -13,4 +13,6 @@ public class TicketView {
     public TicketView(){
         
 }
+     public void mostrarMenu() {
+     }
 }
