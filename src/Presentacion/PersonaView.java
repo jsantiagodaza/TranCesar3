@@ -16,4 +16,6 @@ public class PersonaView {
     private void registrarConductor() {
         
     }
+    private void asignarConductorAVehiculo() {
+    }
 }
