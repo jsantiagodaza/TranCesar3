@@ -12,5 +12,9 @@ public class ReporteView {
         public ReporteView(){
     
     }
+           public void mostrarMenu() {
+           
+           }
+           
 
 }
