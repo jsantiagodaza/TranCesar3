@@ -8,6 +8,23 @@ package Logica;
  *
  * @author 2jcue
  */
-public class EstadisticaService {
-    
+import Modelo.*;
+import java.util.*;
+  
+    public class EstadisticaService {
+
+    private TicketService ticketService;
+
+    public EstadisticaService(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
+
+    public double calcularTotalRecaudado() {
+        double total = 0;
+        for (Ticket t : ticketService.listarTodos())
+            total += t.getValorFinal();
+        return total;
+    }
+
 }
+
