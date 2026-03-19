@@ -19,6 +19,11 @@ public class PasajeroDAO {
             System.err.println("Error al guardar pasajero: " + e.getMessage());
         }
     }
+        
+            public List<Pasajero> cargarTodos() {
+        List<Pasajero> lista = new ArrayList<>();
+        File f = new File(ARCHIVO);
+        if (!f.exists()) return lista;
     
     
     
