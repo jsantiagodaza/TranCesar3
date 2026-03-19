@@ -32,6 +32,20 @@ public class PasajeroDAO {
                 if (linea.isEmpty()) continue;
                 String[] campos = linea.split(";", -1);
                 if (campos.length < 3) continue;
+                
+                
+                                String cedula = campos[0];
+                String nombre = campos[1];
+                String tipo   = campos[2];
+
+                Pasajero p;
+                switch (tipo) {
+                    case "Estudiante":  p = new PasajeroEstudiante(cedula, nombre);  break;
+                    case "AdultoMayor": p = new PasajeroAdultoMayor(cedula, nombre); break;
+                    default:            p = new PasajeroRegular(cedula, nombre);     break;
+                }
+                lista.add(p);
+            }
     
     
     
