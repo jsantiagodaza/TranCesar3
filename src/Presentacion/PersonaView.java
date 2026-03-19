@@ -22,4 +22,7 @@ public class PersonaView {
         }
             private void listarPasajeros() {
             }
+                private int leerInt() {
+                return 0;
+                }
 }
