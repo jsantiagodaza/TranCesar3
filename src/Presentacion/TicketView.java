@@ -15,4 +15,8 @@ public class TicketView {
 }
      public void mostrarMenu() {
      }
+     
+         private void venderTicket() {
+         }
+         
 }
