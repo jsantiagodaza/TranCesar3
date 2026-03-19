@@ -20,4 +20,7 @@ public class TicketView {
          }
              private void listarTickets() {
              }
+             private int leerInt() {
+             return 0;
+             }
 }
