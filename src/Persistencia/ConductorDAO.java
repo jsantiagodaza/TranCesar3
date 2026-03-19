@@ -10,4 +10,15 @@ package Persistencia;
  */
 public class ConductorDAO {
     
+    private static final String ARCHIVO = "conductores.txt";
+
+    public void guardar(Conductor c) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
+            bw.write(c.toCSV());
+            bw.newLine();
+        } catch (IOException e) {
+            System.err.println("Error al guardar conductor: " + e.getMessage());
+        }
+    }
+    
 }
