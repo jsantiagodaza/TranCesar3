@@ -21,4 +21,7 @@ public class VehiculoView {
                      private void buscarPorPlaca() {
                      
                      }
+                     private int leerInt() {
+                     return 0; 
+                     }
 }
