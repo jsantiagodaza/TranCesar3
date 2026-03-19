@@ -56,6 +56,41 @@ public class PersonaService {
     return new ArrayList<>(conductores);
 }
     
+    // ── PASAJEROS ─────────────────────────────────────────────
+
+    public String registrarPasajero(String cedula, String nombre, String tipo) {
+    if (cedula == null || cedula.trim().isEmpty())
+        return "ERROR: La cedula no puede estar vacia.";
+    if (nombre == null || nombre.trim().isEmpty())
+        return "ERROR: El nombre no puede estar vacio.";
+    if (buscarPasajeroPorCedula(cedula) != null)
+        return "ERROR: Ya existe un pasajero con la cedula " + cedula;
+
+    Pasajero p;
+    switch (tipo.toLowerCase()) {
+        case "estudiante":
+            p = new PasajeroEstudiante(cedula, nombre);  break;
+        case "adultomayor":
+        case "adulto mayor":
+            p = new PasajeroAdultoMayor(cedula, nombre); break;
+        default:
+            p = new PasajeroRegular(cedula, nombre);     break;
+    }
+
+    pasajeros.add(p);
+    pasajeroDAO.guardar(p);
+    return "OK: Pasajero " + nombre + " (" + p.getTipo() + ") registrado correctamente.";
+}
+
+    public Pasajero buscarPasajeroPorCedula(String cedula) {
+    for (Pasajero p : pasajeros)
+        if (p.getCedula().equals(cedula)) return p;
+    return null;
+}
+
+    public List<Pasajero> listarPasajeros() {
+    return new ArrayList<>(pasajeros);
+}
     
     
     
