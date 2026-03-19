@@ -16,5 +16,9 @@ public class ReporteView {
            
            }
            
+               private void reporteTotalRecaudado() {
+               
+               }
+           
 
 }
