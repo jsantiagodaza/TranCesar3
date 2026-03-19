@@ -10,4 +10,7 @@ package Presentacion;
  */
 public class TicketView {
     
+    public TicketView(){
+        
+}
 }
