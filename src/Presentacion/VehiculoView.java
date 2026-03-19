@@ -9,19 +9,25 @@ package Presentacion;
  * @author santi
  */
 public class VehiculoView {
-    
-     public VehiculoView(){
-     
-     }
-         public void mostrarMenu() {
-         }
-             private void registrarVehiculo() {
-             }
-                 private void listarVehiculos() {}
-                     private void buscarPorPlaca() {
-                     
-                     }
-                     private int leerInt() {
-                     return 0; 
-                     }
+
+    public VehiculoView() {
+
+    }
+
+    public void mostrarMenu() {
+    }
+
+    private void registrarVehiculo() {
+    }
+
+    private void listarVehiculos() {
+    }
+
+    private void buscarPorPlaca() {
+
+    }
+
+    private int leerInt() {
+        return 0;
+    }
 }
