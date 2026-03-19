@@ -13,6 +13,18 @@ public class TicketService {
     
     
     
+    public TicketService(VehiculoService vehiculoService,
+                     PersonaService personaService) {
+    this.dao             = new TicketDAO();
+    this.vehiculoService = vehiculoService;
+    this.tickets = dao.cargarTodos(
+            personaService.getPasajerosCargados(),
+            vehiculoService.listarTodos()
+    );
+}
+    
+    
+    
     
     
     
