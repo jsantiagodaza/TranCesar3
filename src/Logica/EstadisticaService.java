@@ -39,5 +39,26 @@ import java.util.*;
         return mapa;
     }
     
+     public Vehiculo vehiculoConMasTickets() {
+        Map<String, Integer> conteo        = new HashMap<>();
+        Map<String, Vehiculo> mapaVehiculos = new HashMap<>();
+
+        for (Ticket t : ticketService.listarTodos()) {
+            String placa = t.getVehiculo().getPlaca();
+            conteo.put(placa, conteo.getOrDefault(placa, 0) + 1);
+            mapaVehiculos.put(placa, t.getVehiculo());
+        }
+
+        String placaMax = null;
+        int max = 0;
+        for (Map.Entry<String, Integer> e : conteo.entrySet()) {
+            if (e.getValue() > max) {
+                max = e.getValue();
+                placaMax = e.getKey();
+            }
+        }
+        return placaMax != null ? mapaVehiculos.get(placaMax) : null;
+    }
+    
 }
 
