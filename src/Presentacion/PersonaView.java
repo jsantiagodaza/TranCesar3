@@ -18,4 +18,6 @@ public class PersonaView {
     }
     private void asignarConductorAVehiculo() {
     }
+        private void registrarPasajero() {
+        }
 }
