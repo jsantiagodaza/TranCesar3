@@ -24,6 +24,35 @@ public class TicketService {
 }
     
     
+    public String venderTicket(String cedulaPasajero, String placaVehiculo,
+                           String origen, String destino,
+                           PersonaService personaService) {
+    Pasajero pasajero = personaService.buscarPasajeroPorCedula(cedulaPasajero);
+    if (pasajero == null)
+        return "ERROR: No se encontró pasajero con cedula " + cedulaPasajero;
+
+    Vehiculo vehiculo = vehiculoService.buscarPorPlaca(placaVehiculo);
+    if (vehiculo == null)
+        return "ERROR: No se encontro vehiculo con placa " + placaVehiculo;
+
+    if (!vehiculo.isDisponible())
+        return "ERROR: El vehiculo " + placaVehiculo + " no esta disponible.";
+
+    if (!vehiculo.tieneCupos())
+        return "ERROR: El vehiculo " + placaVehiculo + " está lleno. No hay cupos disponibles.";
+
+    if (origen == null || origen.trim().isEmpty())
+        return "ERROR: El origen no puede estar vacio.";
+
+    if (destino == null || destino.trim().isEmpty())
+        return "ERROR: El destino no puede estar vacio.";
+    
+    
+    
+    
+    
+}
+    
     
     
     
