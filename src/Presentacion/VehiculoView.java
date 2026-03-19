@@ -10,4 +10,7 @@ package Presentacion;
  */
 public class VehiculoView {
     
+     public VehiculoView(){
+     
+     }
 }
