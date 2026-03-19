@@ -13,4 +13,9 @@ import java.util.Scanner;
 public class MenuPrincipal {
     
     private Scanner sc;
+    
+     public MenuPrincipal() {
+        sc = new Scanner(System.in);
+
+    }
 }
