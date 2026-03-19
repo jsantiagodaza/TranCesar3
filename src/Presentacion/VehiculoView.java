@@ -15,4 +15,7 @@ public class VehiculoView {
      }
          public void mostrarMenu() {
          }
+             private void registrarVehiculo() {
+             }
+             
 }
