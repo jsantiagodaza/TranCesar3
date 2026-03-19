@@ -12,5 +12,15 @@ public class TicketDAO {
     private static final String ARCHIVO = "tickets.txt";
     
     
+    public void guardar(Ticket t) {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
+        bw.write(t.toCSV());
+        bw.newLine();
+    } catch (IOException e) {
+        System.err.println("Error al guardar ticket: " + e.getMessage());
+    }
+}
+    
+    
     
 }
