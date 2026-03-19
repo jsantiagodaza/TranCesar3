@@ -9,6 +9,8 @@ package Presentacion;
  * @author santi
  */
 public class ReporteView {
+        public ReporteView(){
     
+    }
 
 }
