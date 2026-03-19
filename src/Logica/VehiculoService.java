@@ -46,4 +46,19 @@ public class VehiculoService {
         dao.guardar(v);
         return "OK: Vehiculo " + tipo + " con placa " + placa + " registrado correctamente.";
     }
+    
+     public Vehiculo buscarPorPlaca(String placa) {
+        for (Vehiculo v : vehiculos)
+            if (v.getPlaca().equalsIgnoreCase(placa)) return v;
+        return null;
+    }
+
+    public List<Vehiculo> listarTodos() {
+        return new ArrayList<>(vehiculos);
+    }
+
+    public void guardarCambios() {
+        dao.reescribirTodos(vehiculos);
+    }
+
 }
