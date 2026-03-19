@@ -20,6 +20,64 @@ public class PersonaService {
     this.pasajeros    = pasajeroDAO.cargarTodos();
 }
     
+        // ── CONDUCTORES ──────────────────────────────────────────
+
+    public String registrarConductor(String cedula, String nombre,
+                                 String numLicencia, String catLicencia) {
+    if (cedula == null || cedula.trim().isEmpty())
+        return "ERROR: La cedula no puede estar vacia.";
+    if (nombre == null || nombre.trim().isEmpty())
+        return "ERROR: El nombre no puede estar vacio.";
+    if (buscarConductorPorCedula(cedula) != null)
+        return "ERROR: Ya existe un conductor con la cedula " + cedula;
+
+    Conductor c = new Conductor(cedula, nombre, numLicencia, catLicencia);
+    conductores.add(c);
+    conductorDAO.guardar(c);
+    return "OK: Conductor " + nombre + " registrado correctamente.";
+}
+
+    public Conductor buscarConductorPorCedula(String cedula) {
+    for (Conductor c : conductores)
+        if (c.getCedula().equals(cedula)) return c;
+    return null;
+}
+
+    public List<Conductor> listarConductores() {
+    return new ArrayList<>(conductores);
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
