@@ -48,55 +48,19 @@ public class TicketService {
         return "ERROR: El destino no puede estar vacio.";
     
     
-    
-    
+    Ticket t = new Ticket(pasajero, vehiculo, origen, destino);
+    vehiculo.agregarPasajero();
+    tickets.add(t);
+    dao.guardar(t);
+    vehiculoService.guardarCambios();
+
+    return String.format("OK: Ticket #%d generado. Valor: $%,.0f", t.getId(), t.getValorFinal());
     
 }
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
 }
