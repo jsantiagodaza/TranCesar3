@@ -19,6 +19,7 @@ public class ReporteView {
                private void reporteTotalRecaudado() {
                
                }
-           
+                   private void reporteVehiculoConMasTickets() {
+                   }
 
 }
