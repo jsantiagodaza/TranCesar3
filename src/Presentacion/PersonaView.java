@@ -13,4 +13,7 @@ public class PersonaView {
     public void mostrarMenu() {
      
     }
+    private void registrarConductor() {
+        
+    }
 }
