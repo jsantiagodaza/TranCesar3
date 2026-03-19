@@ -23,4 +23,8 @@ public class ReporteView {
                    }
     private void reporteTicketsPorVehiculo() {
     }
+      private int leerInt() {
+          return 0;
+      
+      }
 }
