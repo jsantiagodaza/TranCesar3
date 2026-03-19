@@ -59,27 +59,19 @@ public void imprimirDetalle() {
     System.out.println("=====================================");
 }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public String toCSV() {
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return id + ";" + pasajero.getCedula() + ";" + vehiculo.getPlaca() + ";" +
+           fechaCompra.format(fmt) + ";" + origen + ";" + destino + ";" + valorFinal;
+}
+
+    public int getId() { return id; }
+    public Pasajero getPasajero() { return pasajero; }
+    public Vehiculo getVehiculo() { return vehiculo; }
+    public LocalDate getFechaCompra() { return fechaCompra; }
+    public String getOrigen() { return origen; }
+    public String getDestino() { return destino; }
+    public double getValorFinal() { return valorFinal; }
     
     
     
