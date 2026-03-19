@@ -13,4 +13,6 @@ public class VehiculoView {
      public VehiculoView(){
      
      }
+         public void mostrarMenu() {
+         }
 }
