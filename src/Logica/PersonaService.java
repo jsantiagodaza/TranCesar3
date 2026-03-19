@@ -92,36 +92,10 @@ public class PersonaService {
     return new ArrayList<>(pasajeros);
 }
     
+    public List<Pasajero> getPasajerosCargados() {
+    return pasajeros;
+}
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
 }
