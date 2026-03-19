@@ -26,5 +26,18 @@ import java.util.*;
         return total;
     }
 
+    public Map<String, Integer> pasajerosPorTipo() {
+        Map<String, Integer> mapa = new LinkedHashMap<>();
+        mapa.put("Regular",     0);
+        mapa.put("Estudiante",  0);
+        mapa.put("AdultoMayor", 0);
+
+        for (Ticket t : ticketService.listarTodos()) {
+            String tipo = t.getPasajero().getTipo();
+            mapa.put(tipo, mapa.getOrDefault(tipo, 0) + 1);
+        }
+        return mapa;
+    }
+    
 }
 
