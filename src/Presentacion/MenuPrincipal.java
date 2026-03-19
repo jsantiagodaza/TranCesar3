@@ -4,10 +4,13 @@
  */
 package Presentacion;
 
+import java.util.Scanner;
+
 /**
  *
  * @author santi
  */
 public class MenuPrincipal {
     
+    private Scanner sc;
 }
