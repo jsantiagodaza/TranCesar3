@@ -36,6 +36,15 @@ public class PersonaService {
     conductorDAO.guardar(c);
     return "OK: Conductor " + nombre + " registrado correctamente.";
 }
+    
+    public String asignarConductorAVehiculo(String cedula, Vehiculo vehiculo) {
+    Conductor c = buscarConductorPorCedula(cedula);
+    if (c == null)
+        return "ERROR: No se encontro conductor con cedula " + cedula;
+    if (!c.tieneLicencia())
+        return "ERROR: El conductor " + c.getNombre() + " no tiene licencia registrada.";
+    return "OK: Conductor " + c.getNombre() + " asignado al vehiculo " + vehiculo.getPlaca() + ".";
+}
 
     public Conductor buscarConductorPorCedula(String cedula) {
     for (Conductor c : conductores)
