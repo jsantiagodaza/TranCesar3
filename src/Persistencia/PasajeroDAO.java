@@ -24,6 +24,14 @@ public class PasajeroDAO {
         List<Pasajero> lista = new ArrayList<>();
         File f = new File(ARCHIVO);
         if (!f.exists()) return lista;
+        
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim();
+                if (linea.isEmpty()) continue;
+                String[] campos = linea.split(";", -1);
+                if (campos.length < 3) continue;
     
     
     
