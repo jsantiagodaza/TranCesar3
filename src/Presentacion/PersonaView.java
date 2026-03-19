@@ -10,4 +10,7 @@ package Presentacion;
  */
 public class PersonaView {
     
+    public void mostrarMenu() {
+     
+    }
 }
