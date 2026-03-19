@@ -46,6 +46,12 @@ public class PasajeroDAO {
                 }
                 lista.add(p);
             }
+            
+                    } catch (IOException e) {
+            System.err.println("Error al cargar pasajeros: " + e.getMessage());
+        }
+        return lista;
+    }
     
     
     
