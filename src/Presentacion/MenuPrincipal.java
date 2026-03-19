@@ -18,4 +18,8 @@ public class MenuPrincipal {
         sc = new Scanner(System.in);
 
     }
+     
+      public void iniciar() {
+     
+    }
 }
