@@ -13,4 +13,13 @@ public class PersonaService {
     private List<Conductor> conductores;
     private List<Pasajero>  pasajeros;
     
+    public PersonaService() {
+    this.conductorDAO = new ConductorDAO();
+    this.pasajeroDAO  = new PasajeroDAO();
+    this.conductores  = conductorDAO.cargarTodos();
+    this.pasajeros    = pasajeroDAO.cargarTodos();
+}
+    
+    
+    
 }
