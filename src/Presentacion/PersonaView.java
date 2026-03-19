@@ -20,4 +20,6 @@ public class PersonaView {
     }
         private void registrarPasajero() {
         }
+            private void listarPasajeros() {
+            }
 }
