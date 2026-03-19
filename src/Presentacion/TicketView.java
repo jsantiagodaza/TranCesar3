@@ -18,5 +18,6 @@ public class TicketView {
      
          private void venderTicket() {
          }
-         
+             private void listarTickets() {
+             }
 }
