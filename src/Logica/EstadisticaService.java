@@ -59,6 +59,13 @@ import java.util.*;
         }
         return placaMax != null ? mapaVehiculos.get(placaMax) : null;
     }
+     
+     public int ticketsPorVehiculo(String placa) {
+        int count = 0;
+        for (Ticket t : ticketService.listarTodos())
+            if (t.getVehiculo().getPlaca().equalsIgnoreCase(placa)) count++;
+        return count;
+    }
     
 }
 
