@@ -4,12 +4,16 @@
  */
 package Presentacion;
 
+import Logica.VehiculoService;
+import java.util.Scanner;
+
 /**
  *
  * @author santi
  */
 public class VehiculoView {
-
+    private VehiculoService vehiculoService;
+    private Scanner sc;
     public VehiculoView() {
 
     }
