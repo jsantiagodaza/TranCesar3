@@ -58,7 +58,10 @@ private EstadisticaService estadisticaService;
     }
 
     private void reporteTotalRecaudado() {
-
+double total = estadisticaService.calcularTotalRecaudado();
+        System.out.println("\n╔========================================+");
+        System.out.printf ("|  TOTAL RECAUDADO : $%,14.0f  |%n", total);
+        System.out.println("+========================================+");
     }
 
     private void reporteVehiculoConMasTickets() {
