@@ -8,7 +8,7 @@ package trancesar3;
  *
  * @author santi
  */
-public class TranCesar3 {
+public class Main {
 
     /**
      * @param args the command line arguments
