@@ -29,7 +29,7 @@ public class TicketService {
                            PersonaService personaService) {
     Pasajero pasajero = personaService.buscarPasajeroPorCedula(cedulaPasajero);
     if (pasajero == null)
-        return "ERROR: No se encontró pasajero con cedula " + cedulaPasajero;
+        return "ERROR: No se encontro pasajero con cedula " + cedulaPasajero;
 
     Vehiculo vehiculo = vehiculoService.buscarPorPlaca(placaVehiculo);
     if (vehiculo == null)
