@@ -88,7 +88,11 @@ public class VehiculoView {
         else v.imprimirDetalle();
     }
 
-    private int leerInt() {
-        return 0;
+     private int leerInt() {
+        try {
+            return Integer.parseInt(sc.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 }
