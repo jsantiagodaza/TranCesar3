@@ -17,18 +17,20 @@ import java.util.Scanner;
  * @author santi
  */
 public class PersonaView {
-    private PersonaService  personaService;
+
+    private PersonaService personaService;
     private VehiculoService vehiculoService;
     private Scanner sc;
-    
-     public PersonaView(PersonaService personaService,
-                       VehiculoService vehiculoService, Scanner sc) {
-        this.personaService  = personaService;
+
+    public PersonaView(PersonaService personaService,
+            VehiculoService vehiculoService, Scanner sc) {
+        this.personaService = personaService;
         this.vehiculoService = vehiculoService;
         this.sc = sc;
     }
+
     public void mostrarMenu() {
-      int opcion;
+        int opcion;
         do {
             System.out.println("\n╔===================================+");
             System.out.println("|       GESTION DE PERSONAS         |");
@@ -44,16 +46,29 @@ public class PersonaView {
             opcion = leerInt();
 
             switch (opcion) {
-                case 1: registrarConductor();        break;
-                case 2: listarConductores();         break;
-                case 3: asignarConductorAVehiculo(); break;
-                case 4: registrarPasajero();         break;
-                case 5: listarPasajeros();           break;
-                case 0: break;
-                default: System.out.println("  Opcion invalida.");
+                case 1:
+                    registrarConductor();
+                    break;
+                case 2:
+                    listarConductores();
+                    break;
+                case 3:
+                    asignarConductorAVehiculo();
+                    break;
+                case 4:
+                    registrarPasajero();
+                    break;
+                case 5:
+                    listarPasajeros();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("  Opcion invalida.");
             }
         } while (opcion != 0);
     }
+
     private void registrarConductor() {
         System.out.println("\n--- Registrar Conductor ---");
         System.out.print("Cedula      : ");
@@ -67,16 +82,26 @@ public class PersonaView {
         int cat = leerInt();
         String categoria;
         switch (cat) {
-            case 1: categoria = "B1"; break;
-            case 2: categoria = "B2"; break;
-            case 3: categoria = "C1"; break;
-            case 4: categoria = "C2"; break;
-            default: categoria = "B1";
+            case 1:
+                categoria = "B1";
+                break;
+            case 2:
+                categoria = "B2";
+                break;
+            case 3:
+                categoria = "C1";
+                break;
+            case 4:
+                categoria = "C2";
+                break;
+            default:
+                categoria = "B1";
         }
         System.out.println(personaService.registrarConductor(cedula, nombre, numLic, categoria));
     }
+
     private void asignarConductorAVehiculo() {
-          System.out.println("\n--- Asignar Conductor a Vehículo ---");
+        System.out.println("\n--- Asignar Conductor a Vehículo ---");
         System.out.print("Cedula del conductor : ");
         String cedula = sc.nextLine().trim();
         System.out.print("Placa del vehiculo   : ");
@@ -89,8 +114,9 @@ public class PersonaView {
         }
         System.out.println(personaService.asignarConductorAVehiculo(cedula, v));
     }
-        private void registrarPasajero() {
-             System.out.println("\n--- Registrar Pasajero ---");
+
+    private void registrarPasajero() {
+        System.out.println("\n--- Registrar Pasajero ---");
         System.out.print("Cedula  : ");
         String cedula = sc.nextLine().trim();
         System.out.print("Nombre  : ");
@@ -100,37 +126,47 @@ public class PersonaView {
         int t = leerInt();
         String tipo;
         switch (t) {
-            case 2: tipo = "estudiante";  break;
-            case 3: tipo = "adultomayor"; break;
-            default: tipo = "regular";
+            case 2:
+                tipo = "estudiante";
+                break;
+            case 3:
+                tipo = "adultomayor";
+                break;
+            default:
+                tipo = "regular";
         }
         System.out.println(personaService.registrarPasajero(cedula, nombre, tipo));
-        }
-        
-         private void listarConductores() {
+    }
+
+    private void listarConductores() {
         List<Conductor> lista = personaService.listarConductores();
         if (lista.isEmpty()) {
             System.out.println("  No hay conductores registrados.");
             return;
         }
         System.out.println("\n--- Conductores registrados (" + lista.size() + ") ---");
-        for (Conductor c : lista) c.imprimirDetalle();
+        for (Conductor c : lista) {
+            c.imprimirDetalle();
+        }
     }
-         
-            private void listarPasajeros() {
-                   List<Pasajero> lista = personaService.listarPasajeros();
+
+    private void listarPasajeros() {
+        List<Pasajero> lista = personaService.listarPasajeros();
         if (lista.isEmpty()) {
             System.out.println("  No hay pasajeros registrados.");
             return;
         }
         System.out.println("\n--- Pasajeros registrados (" + lista.size() + ") ---");
-        for (Pasajero p : lista) p.imprimirDetalle();
-            }
-                private int leerInt() {
-                try {
+        for (Pasajero p : lista) {
+            p.imprimirDetalle();
+        }
+    }
+
+    private int leerInt() {
+        try {
             return Integer.parseInt(sc.nextLine().trim());
         } catch (NumberFormatException e) {
             return -1;
         }
-                }
+    }
 }
