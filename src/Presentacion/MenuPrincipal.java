@@ -31,6 +31,15 @@ public class MenuPrincipal {
     public MenuPrincipal() {
         sc = new Scanner(System.in);
 
+        vehiculoService    = new VehiculoService();
+        personaService     = new PersonaService();
+        ticketService      = new TicketService(vehiculoService, personaService);
+        estadisticaService = new EstadisticaService(ticketService);
+
+        vehiculoView = new VehiculoView(vehiculoService, sc);
+        personaView  = new PersonaView(personaService, vehiculoService, sc);
+        ticketView   = new TicketView(ticketService, personaService, sc);
+        reporteView  = new ReporteView(estadisticaService, ticketService, vehiculoService, sc);
     }
 
     public void iniciar() {
