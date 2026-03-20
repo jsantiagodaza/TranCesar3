@@ -7,6 +7,7 @@ package Presentacion;
 import Logica.PersonaService;
 import Logica.VehiculoService;
 import Modelo.Conductor;
+import Modelo.Vehiculo;
 import java.util.List;
 import java.util.Scanner;
 
@@ -74,6 +75,18 @@ public class PersonaView {
         System.out.println(personaService.registrarConductor(cedula, nombre, numLic, categoria));
     }
     private void asignarConductorAVehiculo() {
+          System.out.println("\n--- Asignar Conductor a Vehículo ---");
+        System.out.print("Cedula del conductor : ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Placa del vehiculo   : ");
+        String placa = sc.nextLine().trim().toUpperCase();
+
+        Vehiculo v = vehiculoService.buscarPorPlaca(placa);
+        if (v == null) {
+            System.out.println("  ERROR: No se encontro vehiculo con placa " + placa);
+            return;
+        }
+        System.out.println(personaService.asignarConductorAVehiculo(cedula, v));
     }
         private void registrarPasajero() {
             
