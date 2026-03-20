@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Presentacion;
+package Modelo;
 
 /**
  *
- * @author santi
+ * @author 2jcue
  */
-public class eliminable4 {
-     //esta clase solo existe para inicializar el paquete, será borrada pronto.
+public interface Imprimible {
+    void imprimirDetalle();
 }
