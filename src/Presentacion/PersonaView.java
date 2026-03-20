@@ -7,6 +7,7 @@ package Presentacion;
 import Logica.PersonaService;
 import Logica.VehiculoService;
 import Modelo.Conductor;
+import Modelo.Pasajero;
 import Modelo.Vehiculo;
 import java.util.List;
 import java.util.Scanner;
@@ -117,6 +118,13 @@ public class PersonaView {
     }
          
             private void listarPasajeros() {
+                   List<Pasajero> lista = personaService.listarPasajeros();
+        if (lista.isEmpty()) {
+            System.out.println("  No hay pasajeros registrados.");
+            return;
+        }
+        System.out.println("\n--- Pasajeros registrados (" + lista.size() + ") ---");
+        for (Pasajero p : lista) p.imprimirDetalle();
             }
                 private int leerInt() {
                 return 0;
