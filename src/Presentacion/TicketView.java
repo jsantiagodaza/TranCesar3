@@ -70,7 +70,11 @@ public class TicketView {
         System.out.println("\n--- Tickets vendidos (" + lista.size() + ") ---");
         for (Ticket t : lista) t.imprimirDetalle();
     }
-             private int leerInt() {
-             return 0;
-             }
+          private int leerInt() {
+        try {
+            return Integer.parseInt(sc.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
 }
