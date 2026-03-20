@@ -32,7 +32,29 @@ private EstadisticaService estadisticaService;
     }
 
     public void mostrarMenu() {
+ int opcion;
+        do {
+            System.out.println("\n╔========================================+");
+            System.out.println("|      REPORTES Y ESTADISTICAS           |");
+            System.out.println("+========================================+");
+            System.out.println("|  1. Total dinero recaudado             |");
+            System.out.println("|  2. Pasajeros por tipo                 |");
+            System.out.println("|  3. Veiculo con mas tickets           |");
+            System.out.println("|  4. Tickets vendidos por vehiculo      |");
+            System.out.println("|  0. Volver                             |");
+            System.out.println("+========================================+");
+            System.out.print("  Opcion: ");
+            opcion = leerInt();
 
+            switch (opcion) {
+                case 1: reporteTotalRecaudado();        break;
+                case 2: reportePasajerosPorTipo();      break;
+                case 3: reporteVehiculoConMasTickets(); break;
+                case 4: reporteTicketsPorVehiculo();    break;
+                case 0: break;
+                default: System.out.println("  Opcion invalida.");
+            }
+        } while (opcion != 0);
     }
 
     private void reporteTotalRecaudado() {
