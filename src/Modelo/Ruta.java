@@ -22,6 +22,26 @@ package Modelo;
         this.distanciaKm = distanciaKm;
         this.tiempoEstimadoMinutos = tiempoEstimadoMinutos;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getCiudadOrigen() {
+        return ciudadOrigen;
+    }
+
+    public String getCiudadDestino() {
+        return ciudadDestino;
+    }
+
+    public double getDistanciaKm() {
+        return distanciaKm;
+    }
+
+    public int getTiempoEstimadoMinutos() {
+        return tiempoEstimadoMinutos;
+    }
     
     
     
