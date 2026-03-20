@@ -36,4 +36,11 @@ public class MenuPrincipal {
       public void iniciar() {
      
     }
+       private int leerInt() {
+        try {
+            return Integer.parseInt(sc.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
 }
