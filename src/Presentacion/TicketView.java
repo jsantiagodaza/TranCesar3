@@ -17,9 +17,12 @@ public class TicketView {
     private PersonaService  personaService;
     private Scanner sc;
     
-    public TicketView(){
-        
-}
+   public TicketView(TicketService ticketService,
+                      PersonaService personaService, Scanner sc) {
+        this.ticketService  = ticketService;
+        this.personaService = personaService;
+        this.sc = sc;
+    }
      public void mostrarMenu() {
      }
      
