@@ -6,6 +6,8 @@ package Presentacion;
 
 import Logica.PersonaService;
 import Logica.TicketService;
+import Modelo.Ticket;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -59,8 +61,15 @@ public class TicketView {
         System.out.println(ticketService.venderTicket(
                 cedula, placa, origen, destino, personaService));
     }
-             private void listarTickets() {
-             }
+              private void listarTickets() {
+        List<Ticket> lista = ticketService.listarTodos();
+        if (lista.isEmpty()) {
+            System.out.println("  No hay tickets registrados.");
+            return;
+        }
+        System.out.println("\n--- Tickets vendidos (" + lista.size() + ") ---");
+        for (Ticket t : lista) t.imprimirDetalle();
+    }
              private int leerInt() {
              return 0;
              }
