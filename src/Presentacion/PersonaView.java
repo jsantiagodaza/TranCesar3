@@ -16,6 +16,13 @@ public class PersonaView {
     private PersonaService  personaService;
     private VehiculoService vehiculoService;
     private Scanner sc;
+    
+     public PersonaView(PersonaService personaService,
+                       VehiculoService vehiculoService, Scanner sc) {
+        this.personaService  = personaService;
+        this.vehiculoService = vehiculoService;
+        this.sc = sc;
+    }
     public void mostrarMenu() {
      
     }
