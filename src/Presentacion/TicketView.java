@@ -45,8 +45,20 @@ public class TicketView {
         } while (opcion != 0);
      }
      
-         private void venderTicket() {
-         }
+        private void venderTicket() {
+        System.out.println("\n--- Vender Ticket ---");
+        System.out.print("Cedula del pasajero : ");
+        String cedula  = sc.nextLine().trim();
+        System.out.print("Placa del vehiculo  : ");
+        String placa   = sc.nextLine().trim().toUpperCase();
+        System.out.print("Ciudad de origen    : ");
+        String origen  = sc.nextLine().trim();
+        System.out.print("Ciudad de destino   : ");
+        String destino = sc.nextLine().trim();
+
+        System.out.println(ticketService.venderTicket(
+                cedula, placa, origen, destino, personaService));
+    }
              private void listarTickets() {
              }
              private int leerInt() {
