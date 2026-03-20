@@ -43,6 +43,21 @@ package Modelo;
         return tiempoEstimadoMinutos;
     }
     
+    @Override
+    public void imprimirDetalle() {
+        System.out.println("========== RUTA ==========");
+        System.out.println("Codigo   : " + codigo);
+        System.out.println("Origen   : " + ciudadOrigen);
+        System.out.println("Destino  : " + ciudadDestino);
+        System.out.println("Distancia: " + distanciaKm + " km");
+        System.out.println("Tiempo   : " + tiempoEstimadoMinutos + " min");
+        System.out.println("==========================");
+    }
+
+    public String toCSV() {
+        return codigo + ";" + ciudadOrigen + ";" + ciudadDestino + ";"
+               + distanciaKm + ";" + tiempoEstimadoMinutos;
+    }
     
     
 }
