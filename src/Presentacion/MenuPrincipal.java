@@ -4,6 +4,10 @@
  */
 package Presentacion;
 
+import Logica.EstadisticaService;
+import Logica.PersonaService;
+import Logica.TicketService;
+import Logica.VehiculoService;
 import java.util.Scanner;
 
 /**
@@ -11,8 +15,18 @@ import java.util.Scanner;
  * @author santi
  */
 public class MenuPrincipal {
-    
+    private VehiculoService    vehiculoService;
+    private PersonaService     personaService;
+    private TicketService      ticketService;
+    private EstadisticaService estadisticaService;
+
+    private VehiculoView vehiculoView;
+    private PersonaView  personaView;
+    private TicketView   ticketView;
+    private ReporteView  reporteView;
+
     private Scanner sc;
+
     
      public MenuPrincipal() {
         sc = new Scanner(System.in);
