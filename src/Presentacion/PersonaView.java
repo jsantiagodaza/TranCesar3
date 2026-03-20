@@ -127,6 +127,10 @@ public class PersonaView {
         for (Pasajero p : lista) p.imprimirDetalle();
             }
                 private int leerInt() {
-                return 0;
+                try {
+            return Integer.parseInt(sc.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
                 }
 }
