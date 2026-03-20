@@ -78,6 +78,16 @@ double total = estadisticaService.calcularTotalRecaudado();
     }
 
     private void reporteTicketsPorVehiculo() {
+        System.out.print("Ingrese placa del vehiculo: ");
+        String placa = sc.nextLine().trim().toUpperCase();
+        Vehiculo v = vehiculoService.buscarPorPlaca(placa);
+        if (v == null) {
+            System.out.println("  No se encontro vehículo con placa " + placa);
+            return;
+        }
+        System.out.println("\n  Vehiculo : " + v.getTipo() + " - " + placa);
+        System.out.println("  Ruta     : " + v.getRuta());
+        System.out.println("  Tickets  : " + estadisticaService.ticketsPorVehiculo(placa));
     }
     private void reportePasajerosPorTipo() {
         Map<String, Integer> mapa = estadisticaService.pasajerosPorTipo();
