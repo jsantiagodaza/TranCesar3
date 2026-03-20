@@ -15,14 +15,7 @@ import java.util.Scanner;
  * @author santi
  */
 public class MenuPrincipal {
-<<<<<<< HEAD
-    
-    private VehiculoService    vehiculoService;
-    private PersonaService     personaService;
-    private TicketService      ticketService;
-    private EstadisticaService estadisticaService;
-    
-=======
+
 
     private VehiculoService vehiculoService;
     private PersonaService personaService;
@@ -34,7 +27,6 @@ public class MenuPrincipal {
     private TicketView ticketView;
     private ReporteView reporteView;
 
->>>>>>> 262545d0dbb11b83b28779578d452a44b0080546
     private Scanner sc;
 
     public MenuPrincipal() {
