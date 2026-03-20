@@ -20,8 +20,14 @@ private EstadisticaService estadisticaService;
     private Scanner sc;
     
     
-    public ReporteView() {
-   
+    public ReporteView(EstadisticaService estadisticaService,
+                       TicketService ticketService,
+                       VehiculoService vehiculoService,
+                       Scanner sc) {
+        this.estadisticaService = estadisticaService;
+        this.ticketService      = ticketService;
+        this.vehiculoService    = vehiculoService;
+        this.sc = sc;
     }
 
     public void mostrarMenu() {
