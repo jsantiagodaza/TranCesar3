@@ -7,18 +7,21 @@ package Presentacion;
 import Logica.EstadisticaService;
 import Logica.TicketService;
 import Logica.VehiculoService;
+import java.util.Scanner;
 
 /**
  *
  * @author santi
  */
 public class ReporteView {
-
-    public ReporteView() {
-   private EstadisticaService estadisticaService;
+private EstadisticaService estadisticaService;
     private TicketService      ticketService;
     private VehiculoService    vehiculoService;
     private Scanner sc;
+    
+    
+    public ReporteView() {
+   
     }
 
     public void mostrarMenu() {
