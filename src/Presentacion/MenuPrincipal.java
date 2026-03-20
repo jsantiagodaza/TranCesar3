@@ -15,26 +15,26 @@ import java.util.Scanner;
  * @author santi
  */
 public class MenuPrincipal {
-    private VehiculoService    vehiculoService;
-    private PersonaService     personaService;
-    private TicketService      ticketService;
+
+    private VehiculoService vehiculoService;
+    private PersonaService personaService;
+    private TicketService ticketService;
     private EstadisticaService estadisticaService;
 
     private VehiculoView vehiculoView;
-    private PersonaView  personaView;
-    private TicketView   ticketView;
-    private ReporteView  reporteView;
+    private PersonaView personaView;
+    private TicketView ticketView;
+    private ReporteView reporteView;
 
     private Scanner sc;
 
-    
-     public MenuPrincipal() {
+    public MenuPrincipal() {
         sc = new Scanner(System.in);
 
     }
-     
-      public void iniciar() {
-       System.out.println("+===========================================+");
+
+    public void iniciar() {
+        System.out.println("+===========================================+");
         System.out.println("|         TRANSCESAR S.A.S.                 |");
         System.out.println("|   Sistema de Gestion de Tickets           |");
         System.out.println("+===========================================+");
@@ -55,18 +55,30 @@ public class MenuPrincipal {
             opcion = leerInt();
 
             switch (opcion) {
-                case 1: vehiculoView.mostrarMenu(); break;
-                case 2: personaView.mostrarMenu();  break;
-                case 3: ticketView.mostrarMenu();   break;
-                case 4: reporteView.mostrarMenu();  break;
-                case 0: System.out.println("\n  ¡Hasta luego! Sistema cerrado."); break;
-                default: System.out.println("  Opcion invalida. Intente de nuevo.");
+                case 1:
+                    vehiculoView.mostrarMenu();
+                    break;
+                case 2:
+                    personaView.mostrarMenu();
+                    break;
+                case 3:
+                    ticketView.mostrarMenu();
+                    break;
+                case 4:
+                    reporteView.mostrarMenu();
+                    break;
+                case 0:
+                    System.out.println("\n  ¡Hasta luego! Sistema cerrado.");
+                    break;
+                default:
+                    System.out.println("  Opcion invalida. Intente de nuevo.");
             }
         } while (opcion != 0);
 
         sc.close();
     }
-       private int leerInt() {
+
+    private int leerInt() {
         try {
             return Integer.parseInt(sc.nextLine().trim());
         } catch (NumberFormatException e) {
