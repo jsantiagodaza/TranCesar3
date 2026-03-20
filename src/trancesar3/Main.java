@@ -8,13 +8,10 @@ package trancesar3;
  *
  * @author santi
  */
-public class TranCesar3 {
-
-    /**
-     * @param args the command line arguments
-     */
+import Presentacion.MenuPrincipal;
+public class Main {
     public static void main(String[] args) {
-        // TODO code application logic here
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.iniciar();
     }
-    
 }

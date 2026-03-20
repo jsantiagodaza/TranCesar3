@@ -4,32 +4,105 @@
  */
 package Presentacion;
 
+import Logica.EstadisticaService;
+import Logica.TicketService;
+import Logica.VehiculoService;
+import Modelo.Vehiculo;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  *
  * @author santi
  */
 public class ReporteView {
-
-    public ReporteView() {
-
+private EstadisticaService estadisticaService;
+    private TicketService      ticketService;
+    private VehiculoService    vehiculoService;
+    private Scanner sc;
+    
+    
+    public ReporteView(EstadisticaService estadisticaService,
+                       TicketService ticketService,
+                       VehiculoService vehiculoService,
+                       Scanner sc) {
+        this.estadisticaService = estadisticaService;
+        this.ticketService      = ticketService;
+        this.vehiculoService    = vehiculoService;
+        this.sc = sc;
     }
 
     public void mostrarMenu() {
+ int opcion;
+        do {
+            System.out.println("\n╔========================================+");
+            System.out.println("|      REPORTES Y ESTADISTICAS           |");
+            System.out.println("+========================================+");
+            System.out.println("|  1. Total dinero recaudado             |");
+            System.out.println("|  2. Pasajeros por tipo                 |");
+            System.out.println("|  3. Veiculo con mas tickets           |");
+            System.out.println("|  4. Tickets vendidos por vehiculo      |");
+            System.out.println("|  0. Volver                             |");
+            System.out.println("+========================================+");
+            System.out.print("  Opcion: ");
+            opcion = leerInt();
 
+            switch (opcion) {
+                case 1: reporteTotalRecaudado();        break;
+                case 2: reportePasajerosPorTipo();      break;
+                case 3: reporteVehiculoConMasTickets(); break;
+                case 4: reporteTicketsPorVehiculo();    break;
+                case 0: break;
+                default: System.out.println("  Opcion invalida.");
+            }
+        } while (opcion != 0);
     }
 
     private void reporteTotalRecaudado() {
-
+double total = estadisticaService.calcularTotalRecaudado();
+        System.out.println("\n╔========================================+");
+        System.out.printf ("|  TOTAL RECAUDADO : $%,14.0f  |%n", total);
+        System.out.println("+========================================+");
     }
 
-    private void reporteVehiculoConMasTickets() {
+     private void reporteVehiculoConMasTickets() {
+        Vehiculo v = estadisticaService.vehiculoConMasTickets();
+        if (v == null) {
+            System.out.println("  No hay tickets vendidos todavia.");
+            return;
+        }
+        System.out.println("\n--- Vehiculo con más tickets ---");
+        v.imprimirDetalle();
+        System.out.println("  Tickets vendidos: " +
+                estadisticaService.ticketsPorVehiculo(v.getPlaca()));
     }
 
     private void reporteTicketsPorVehiculo() {
+        System.out.print("Ingrese placa del vehiculo: ");
+        String placa = sc.nextLine().trim().toUpperCase();
+        Vehiculo v = vehiculoService.buscarPorPlaca(placa);
+        if (v == null) {
+            System.out.println("  No se encontro vehículo con placa " + placa);
+            return;
+        }
+        System.out.println("\n  Vehiculo : " + v.getTipo() + " - " + placa);
+        System.out.println("  Ruta     : " + v.getRuta());
+        System.out.println("  Tickets  : " + estadisticaService.ticketsPorVehiculo(placa));
     }
-
-    private int leerInt() {
-        return 0;
-
+    private void reportePasajerosPorTipo() {
+        Map<String, Integer> mapa = estadisticaService.pasajerosPorTipo();
+        int total = ticketService.listarTodos().size();
+        System.out.println("\n--- Pasajeros por tipo ---");
+        System.out.printf("  %-15s : %d%n", "Regular",      mapa.getOrDefault("Regular",     0));
+        System.out.printf("  %-15s : %d%n", "Estudiante",   mapa.getOrDefault("Estudiante",  0));
+        System.out.printf("  %-15s : %d%n", "Adulto Mayor", mapa.getOrDefault("AdultoMayor", 0));
+        System.out.printf("  %-15s : %d%n", "TOTAL tickets", total);
+    }
+  private int leerInt() {
+        try {
+            return Integer.parseInt(sc.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 }
