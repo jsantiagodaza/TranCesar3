@@ -19,7 +19,28 @@ public class VehiculoView {
         this.sc = sc;
     }
 
-    public void mostrarMenu() {
+  public void mostrarMenu() {
+        int opcion;
+        do {
+            System.out.println("\n╔==============================+");
+            System.out.println("|      GESTION DE VEHICULOS    |");
+            System.out.println("+==============================+");
+            System.out.println("|  1. Registrar vehiculo       |");
+            System.out.println("|  2. Listar vehiculos         |");
+            System.out.println("|  3. Buscar por placa         |");
+            System.out.println("|  0. Volver                   |");
+            System.out.println("+==============================+");
+            System.out.print("  Opcion: ");
+            opcion = leerInt();
+
+            switch (opcion) {
+                case 1: registrarVehiculo(); break;
+                case 2: listarVehiculos();   break;
+                case 3: buscarPorPlaca();    break;
+                case 0: break;
+                default: System.out.println("  Opcion inválida.");
+            }
+        } while (opcion != 0);
     }
 
     private void registrarVehiculo() {
