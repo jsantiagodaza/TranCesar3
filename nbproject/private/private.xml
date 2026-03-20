@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/trancesar3/TranCesar3.java</file>
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/Logica/eliminable.java</file>
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/Modelo/eliminable2.java</file>
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/Persistencia/eliminable3.java</file>
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/Presentacion/eliminable4.java</file>
-=======
-            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Logica/VehiculoService.java</file>
->>>>>>> d71bc54965d4fccc6661290c59e0c00b5804fde1
-=======
             <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Persistencia/VehiculoDAO.java</file>
->>>>>>> 07351ebd55feaabd0c30f71717348f9e538b62dd
+            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/MenuPrincipal.java</file>
+            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/TicketView.java</file>
+            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/ReporteView.java</file>
+            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/VehiculoView.java</file>
         </group>
     </open-files>
 </project-private>
