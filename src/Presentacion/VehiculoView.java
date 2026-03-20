@@ -80,8 +80,12 @@ public class VehiculoView {
         for (Vehiculo v : lista) v.imprimirDetalle();
     }
 
-    private void buscarPorPlaca() {
-
+      private void buscarPorPlaca() {
+        System.out.print("Ingrese placa: ");
+        String placa = sc.nextLine().trim().toUpperCase();
+        Vehiculo v = vehiculoService.buscarPorPlaca(placa);
+        if (v == null) System.out.println("  No se encontró vehiculo con placa " + placa);
+        else v.imprimirDetalle();
     }
 
     private int leerInt() {
