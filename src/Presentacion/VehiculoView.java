@@ -43,8 +43,30 @@ public class VehiculoView {
         } while (opcion != 0);
     }
 
-    private void registrarVehiculo() {
+     private void registrarVehiculo() {
+        System.out.println("\n--- Registrar Vehiculo ---");
+        System.out.println("  1) Buseta   2) MicroBus   3) Bus");
+        System.out.print("Seleccione tipo: ");
+        int t = leerInt();
+
+        String tipo;
+        switch (t) {
+            case 1: tipo = "buseta";   break;
+            case 2: tipo = "microbus"; break;
+            case 3: tipo = "bus";      break;
+            default:
+                System.out.println("  Tipo invalido.");
+                return;
+        }
+
+        System.out.print("Placa : ");
+        String placa = sc.nextLine().trim().toUpperCase();
+        System.out.print("Ruta  : ");
+        String ruta  = sc.nextLine().trim();
+
+        System.out.println(vehiculoService.registrarVehiculo(tipo, placa, ruta));
     }
+
 
     private void listarVehiculos() {
     }
