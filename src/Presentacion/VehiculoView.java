@@ -5,6 +5,8 @@
 package Presentacion;
 
 import Logica.VehiculoService;
+import Modelo.Vehiculo;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -68,7 +70,14 @@ public class VehiculoView {
     }
 
 
-    private void listarVehiculos() {
+  private void listarVehiculos() {
+        List<Vehiculo> lista = vehiculoService.listarTodos();
+        if (lista.isEmpty()) {
+            System.out.println("  No hay vehiculos registrados.");
+            return;
+        }
+        System.out.println("\n--- Vehiculos registrados (" + lista.size() + ") ---");
+        for (Vehiculo v : lista) v.imprimirDetalle();
     }
 
     private void buscarPorPlaca() {
