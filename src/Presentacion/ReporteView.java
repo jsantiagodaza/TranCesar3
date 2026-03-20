@@ -7,6 +7,7 @@ package Presentacion;
 import Logica.EstadisticaService;
 import Logica.TicketService;
 import Logica.VehiculoService;
+import Modelo.Vehiculo;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -64,7 +65,16 @@ double total = estadisticaService.calcularTotalRecaudado();
         System.out.println("+========================================+");
     }
 
-    private void reporteVehiculoConMasTickets() {
+     private void reporteVehiculoConMasTickets() {
+        Vehiculo v = estadisticaService.vehiculoConMasTickets();
+        if (v == null) {
+            System.out.println("  No hay tickets vendidos todavia.");
+            return;
+        }
+        System.out.println("\n--- Vehiculo con más tickets ---");
+        v.imprimirDetalle();
+        System.out.println("  Tickets vendidos: " +
+                estadisticaService.ticketsPorVehiculo(v.getPlaca()));
     }
 
     private void reporteTicketsPorVehiculo() {
