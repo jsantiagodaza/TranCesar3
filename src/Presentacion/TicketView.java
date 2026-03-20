@@ -4,11 +4,18 @@
  */
 package Presentacion;
 
+import Logica.PersonaService;
+import Logica.TicketService;
+import java.util.Scanner;
+
 /**
  *
  * @author santi
  */
 public class TicketView {
+     private TicketService   ticketService;
+    private PersonaService  personaService;
+    private Scanner sc;
     
     public TicketView(){
         
