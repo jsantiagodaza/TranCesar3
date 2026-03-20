@@ -4,12 +4,18 @@
  */
 package Presentacion;
 
+import Logica.PersonaService;
+import Logica.VehiculoService;
+import java.util.Scanner;
+
 /**
  *
  * @author santi
  */
 public class PersonaView {
-    
+    private PersonaService  personaService;
+    private VehiculoService vehiculoService;
+    private Scanner sc;
     public void mostrarMenu() {
      
     }
