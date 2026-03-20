@@ -53,7 +53,25 @@ public class PersonaView {
         } while (opcion != 0);
     }
     private void registrarConductor() {
-        
+        System.out.println("\n--- Registrar Conductor ---");
+        System.out.print("Cedula      : ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Nombre      : ");
+        String nombre = sc.nextLine().trim();
+        System.out.print("N° Licencia : ");
+        String numLic = sc.nextLine().trim();
+        System.out.println("Categoría: 1) B1  2) B2  3) C1  4) C2");
+        System.out.print("Seleccione  : ");
+        int cat = leerInt();
+        String categoria;
+        switch (cat) {
+            case 1: categoria = "B1"; break;
+            case 2: categoria = "B2"; break;
+            case 3: categoria = "C1"; break;
+            case 4: categoria = "C2"; break;
+            default: categoria = "B1";
+        }
+        System.out.println(personaService.registrarConductor(cedula, nombre, numLic, categoria));
     }
     private void asignarConductorAVehiculo() {
     }
