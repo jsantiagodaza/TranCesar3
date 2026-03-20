@@ -24,6 +24,25 @@ public class TicketView {
         this.sc = sc;
     }
      public void mostrarMenu() {
+         int opcion;
+         do {
+            System.out.println("\n╔==============================+");
+            System.out.println("|      VENTA DE TICKETS        |");
+            System.out.println("+==============================+");
+            System.out.println("|  1. Vender ticket            |");
+            System.out.println("|  2. Listar todos los tickets |");
+            System.out.println("|  0. Volver                   |");
+            System.out.println("+==============================+");
+            System.out.print("  Opcion: ");
+            opcion = leerInt();
+
+            switch (opcion) {
+                case 1: venderTicket();  break;
+                case 2: listarTickets(); break;
+                case 0: break;
+                default: System.out.println("  Opcion invalida.");
+            }
+        } while (opcion != 0);
      }
      
          private void venderTicket() {
