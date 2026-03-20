@@ -89,7 +89,21 @@ public class PersonaView {
         System.out.println(personaService.asignarConductorAVehiculo(cedula, v));
     }
         private void registrarPasajero() {
-            
+             System.out.println("\n--- Registrar Pasajero ---");
+        System.out.print("Cedula  : ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Nombre  : ");
+        String nombre = sc.nextLine().trim();
+        System.out.println("Tipo: 1) Regular  2) Estudiante  3) Adulto Mayor");
+        System.out.print("Seleccione: ");
+        int t = leerInt();
+        String tipo;
+        switch (t) {
+            case 2: tipo = "estudiante";  break;
+            case 3: tipo = "adultomayor"; break;
+            default: tipo = "regular";
+        }
+        System.out.println(personaService.registrarPasajero(cedula, nombre, tipo));
         }
         
          private void listarConductores() {
