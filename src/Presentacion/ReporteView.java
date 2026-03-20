@@ -4,6 +4,10 @@
  */
 package Presentacion;
 
+import Logica.EstadisticaService;
+import Logica.TicketService;
+import Logica.VehiculoService;
+
 /**
  *
  * @author santi
@@ -11,7 +15,10 @@ package Presentacion;
 public class ReporteView {
 
     public ReporteView() {
-
+   private EstadisticaService estadisticaService;
+    private TicketService      ticketService;
+    private VehiculoService    vehiculoService;
+    private Scanner sc;
     }
 
     public void mostrarMenu() {
