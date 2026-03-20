@@ -14,8 +14,9 @@ import java.util.Scanner;
 public class VehiculoView {
     private VehiculoService vehiculoService;
     private Scanner sc;
-    public VehiculoView() {
-
+   public VehiculoView(VehiculoService vehiculoService, Scanner sc) {
+        this.vehiculoService = vehiculoService;
+        this.sc = sc;
     }
 
     public void mostrarMenu() {
