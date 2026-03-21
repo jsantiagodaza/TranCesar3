@@ -10,7 +10,8 @@ package Persistencia;
  */
 import Modelo.Ruta;
 import java.io.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class RutaDAO {
     
@@ -25,4 +26,25 @@ public class RutaDAO {
         }
     }
     
+    public List<Ruta> cargarTodos() {
+        List<Ruta> lista = new ArrayList<>();
+        File f = new File(ARCHIVO);
+        if (!f.exists()) return lista;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim();
+                if (linea.isEmpty()) continue;
+                String[] c = linea.split(";", -1);
+                if (c.length < 5) continue;
+                lista.add(new Ruta(c[0], c[1], c[2],
+                        Double.parseDouble(c[3]),
+                        Integer.parseInt(c[4])));
+            }
+        } catch (IOException e) {
+            System.err.println("Error al cargar rutas: " + e.getMessage());
+        }
+        return lista;
+    }
 }
