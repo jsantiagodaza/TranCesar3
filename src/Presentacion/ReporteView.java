@@ -7,7 +7,10 @@ package Presentacion;
 import Logica.EstadisticaService;
 import Logica.TicketService;
 import Logica.VehiculoService;
+import Modelo.Ticket;
 import Modelo.Vehiculo;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -97,6 +100,19 @@ double total = estadisticaService.calcularTotalRecaudado();
         System.out.printf("  %-15s : %d%n", "Estudiante",   mapa.getOrDefault("Estudiante",  0));
         System.out.printf("  %-15s : %d%n", "Adulto Mayor", mapa.getOrDefault("AdultoMayor", 0));
         System.out.printf("  %-15s : %d%n", "TOTAL tickets", total);
+    }
+        private void resumenDiaActual() {
+        LocalDate hoy = LocalDate.now();
+        List<Ticket> lista = ticketService.listarPorFecha(hoy);
+        double totalHoy = 0;
+        for (Ticket t : lista) totalHoy += t.getValorFinal();
+
+        System.out.println("\n======================================");
+        System.out.println("|        RESUMEN DEL DIA: " + hoy + "  |");
+        System.out.println("======================================");
+        System.out.printf ("|  Tickets vendidos = %-17d|%n", lista.size());
+        System.out.printf ("|  Total recaudado  = $%,14.0f  |%n", totalHoy);
+        System.out.println("======================================");
     }
   private int leerInt() {
         try {
