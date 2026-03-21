@@ -21,6 +21,21 @@ public class ReservaDAO {
 }
     
     
+    public List<Reserva> cargarTodos(List<Pasajero> pasajeros, List<Vehiculo> vehiculos) {
+    List<Reserva> lista = new ArrayList<>();
+    File f = new File(ARCHIVO);
+    if (!f.exists()) return lista;
+
+    try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+
+    } catch (IOException e) {
+        System.err.println("Error al cargar reservas: " + e.getMessage());
+    }
+
+    return lista;
+}
+    
+    
     
     
     
