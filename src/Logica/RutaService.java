@@ -32,9 +32,16 @@ public class RutaService {
         public Ruta buscarPorCodigo(String codigo) {
         for (Ruta r : rutas)
         if (r.getCodigo().equalsIgnoreCase(codigo)) return r;
-    return null;
+        return null;
     }
         
+        public List<Ruta> listarTodos() {
+        return new ArrayList<>(rutas);
+}
+
+        public List<Ruta> getRutasCargadas() {
+    return rutas;
+}
         
         
         
