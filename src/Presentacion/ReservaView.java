@@ -4,13 +4,30 @@
  */
 package Presentacion;
 
+import Logica.PersonaService;
+import Logica.ReservaService;
+import Logica.TicketService;
+import java.util.Scanner;
+
 /**
  *
  * @author santi
  */
 public class ReservaView {
+ 
+    private ReservaService reservaService;
+    private PersonaService personaService;
+    private TicketService  ticketService;
+    private Scanner sc;
 
-    public ReservaView() {
+    public ReservaView(ReservaService reservaService,
+                       PersonaService personaService,
+                       TicketService ticketService,
+                       Scanner sc) {
+        this.reservaService = reservaService;
+        this.personaService = personaService;
+        this.ticketService  = ticketService;
+        this.sc = sc;
     }
       public void mostrarMenu() {
       }
