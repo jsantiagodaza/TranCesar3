@@ -29,7 +29,7 @@ public class ReservaView {
         this.ticketService  = ticketService;
         this.sc = sc;
     }
-      public void mostrarMenu() {
+      public void mosrarMenu() {
       }
       public void crearReserva(){
       }
