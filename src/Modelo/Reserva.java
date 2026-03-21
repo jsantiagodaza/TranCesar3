@@ -95,6 +95,31 @@ public class Reserva implements Imprimible {
                fechaViaje.format(fmt) + ";" +
                estado.name();
     }
+
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public Pasajero getPasajero() {
+        return pasajero;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public LocalDateTime getFechaViaje() {
+        return fechaViaje;
+    }
+
+    public EstadoReserva getEstado() {
+        return estado;
+    }
     
     
 }
