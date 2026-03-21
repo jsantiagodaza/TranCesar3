@@ -119,6 +119,22 @@ public class ReservaService {
 }
     
     
+    public int verificarVencidas() {
+    int canceladas = 0;
+    for (Reserva r : reservas) {
+        if (r.estaVencida()) {
+            r.cancelar();
+            canceladas++;
+        }
+    }
+    if (canceladas > 0) {
+        dao.reescribirTodos(reservas);
+        vehiculoService.guardarCambios();
+    }
+    return canceladas;
+}
+    
+    
 
     
     
