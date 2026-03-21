@@ -10,6 +10,7 @@ import Logica.VehiculoService;
 import Modelo.Ticket;
 import Modelo.Vehiculo;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -100,6 +101,19 @@ double total = estadisticaService.calcularTotalRecaudado();
         System.out.printf("  %-15s : %d%n", "Estudiante",   mapa.getOrDefault("Estudiante",  0));
         System.out.printf("  %-15s : %d%n", "Adulto Mayor", mapa.getOrDefault("AdultoMayor", 0));
         System.out.printf("  %-15s : %d%n", "TOTAL tickets", total);
+    }
+       private void reportePorFecha() {
+        System.out.print("Ingrese fecha (yyyy-MM-dd): ");
+        String input = sc.nextLine().trim();
+        LocalDate fecha;
+        try { fecha = LocalDate.parse(input); }
+        catch (DateTimeParseException e) {
+            System.out.println("  Fecha invalida."); return;
+        }
+        List<Ticket> lista = ticketService.listarPorFecha(fecha);
+        System.out.println("\n--- Tickets del " + fecha + " (" + lista.size() + ") ---");
+        if (lista.isEmpty()) { System.out.println("  Sin tickets para esa fecha."); return; }
+        for (Ticket t : lista) t.imprimirDetalle();
     }
         private void reportePorTipoVehiculo() {
         System.out.println("Tipo: 1) Buseta  2) MicroBus  3) Bus");
