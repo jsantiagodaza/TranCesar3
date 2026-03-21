@@ -17,12 +17,14 @@ public class MenuPrincipal {
     private VehiculoService    vehiculoService;
     private PersonaService     personaService;
     private TicketService      ticketService;
+    private ReservaService     reservaService;
     private EstadisticaService estadisticaService;
 
     private RutaView     rutaView;
     private VehiculoView vehiculoView;
     private PersonaView  personaView;
     private TicketView   ticketView;
+    private ReservaView  reservaView;
     private ReporteView  reporteView;
 
     private Scanner sc;
@@ -34,49 +36,65 @@ public class MenuPrincipal {
         vehiculoService    = new VehiculoService(rutaService);
         personaService     = new PersonaService();
         ticketService      = new TicketService(vehiculoService, personaService);
+        reservaService     = new ReservaService(vehiculoService, personaService);
         estadisticaService = new EstadisticaService(ticketService);
 
         rutaView     = new RutaView(rutaService, sc);
         vehiculoView = new VehiculoView(vehiculoService, rutaService, sc);
         personaView  = new PersonaView(personaService, vehiculoService, sc);
         ticketView   = new TicketView(ticketService, personaService, sc);
+        reservaView  = new ReservaView(reservaService, personaService, ticketService, sc);
         reporteView  = new ReporteView(estadisticaService, ticketService, vehiculoService, sc);
+
+        // Verificar reservas vencidas al arrancar
+        int vencidas = reservaService.verificarVencidas();
+        if (vencidas > 0)
+            System.out.println("[Sistema] " + vencidas
+                               + " reserva(s) vencida(s) cancelada(s) automaticamente.");
     }
 
     public void iniciar() {
-    System.out.println("+===========================================+");
-    System.out.println("|         TRANSCESAR S.A.S.                 |");
-    System.out.println("|   Sistema de Gestion de Tickets v2        |");
-    System.out.println("+===========================================+");
+        System.out.println("+============================================+");
+        System.out.println("|          TRANSCESAR S.A.S.                 |");
+        System.out.println("|    Sistema de Gestion de Tickets v3        |");
+        System.out.println("+============================================+");
 
-    int opcion;
-    do {
-        System.out.println("\n+====================================+");
-        System.out.println("|          MENU PRINCIPAL            |");
-        System.out.println("+====================================+");
-        System.out.println("|  1. Gestion de Rutas               |");
-        System.out.println("|  2. Gestion de Vehiculos           |");
-        System.out.println("|  3. Gestion de Personas            |");
-        System.out.println("|  4. Venta de Tickets               |");
-        System.out.println("|  5. Reportes y Estadisticas        |");
-        System.out.println("|  0. Salir                          |");
-        System.out.println("+====================================+");
-        System.out.print("  Opcion: ");
-        opcion = leerInt();
+        int opcion;
+        do {
+            System.out.println("\n+======================================+");
+            System.out.println("|           MENU PRINCIPAL             |");
+            System.out.println("+======================================+");
+            System.out.println("|  1. Gestion de Rutas                 |");
+            System.out.println("|  2. Gestion de Vehiculos             |");
+            System.out.println("|  3. Gestion de Personas              |");
+            System.out.println("|  4. Venta de Tickets                 |");
+            System.out.println("|  5. Reservas                         |");
+            System.out.println("|  6. Reportes y Estadisticas          |");
+            System.out.println("|  0. Salir                            |");
+            System.out.println("+======================================+");
+            System.out.print("  Opcion: ");
+            opcion = leerInt();
 
-        switch (opcion) {
-            case 1: rutaView.mostrarMenu();     break;
-            case 2: vehiculoView.mostrarMenu(); break;
-            case 3: personaView.mostrarMenu();  break;
-            case 4: ticketView.mostrarMenu();   break;
-            case 5: reporteView.mostrarMenu();  break;
-            case 0: System.out.println("\n  Hasta luego!"); break;
-            default: System.out.println("  Opcion invalida.");
-        }
-    } while (opcion != 0);
+            switch (opcion) {
+                case 1: rutaView.mostrarMenu();   
+                break;
+                case 2: vehiculoView.mostrarMenu(); 
+                break;
+                case 3: personaView.mostrarMenu(); 
+                break;
+                case 4: ticketView.mostrarMenu();  
+                break;
+                case 5: reservaView.mostrarMenu(); 
+                break;
+                case 6: reporteView.mostrarMenu();  
+                break;
+                case 0: System.out.println("\n  Hasta luego!"); break;
+                default: System.out.println("  Opcion invalida.");
+            }
+        } while (opcion != 0);
 
-    sc.close();
-}
+        sc.close();
+    }
 
     private int leerInt() {
         try { return Integer.parseInt(sc.nextLine().trim()); }
