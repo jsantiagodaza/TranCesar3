@@ -119,8 +119,16 @@ public class ReservaView {
         for (Reserva r : lista) r.imprimirDetalle();
     }
 
-               private void convertirEnTicket() {
-               }
+            private void convertirEnTicket() {
+        System.out.println("\n--- Convertir Reserva en Ticket ---");
+        System.out.print("Codigo de la reserva (ej: RES-0001): ");
+        String codigo = sc.nextLine().trim().toUpperCase();
+
+        String resultado = reservaService.convertirEnTicket(
+                codigo, personaService, ticketService);
+        System.out.println("  " + resultado);
+    }
+
                    private void verificarVencidas() {
                    }
                        private int leerInt() {
