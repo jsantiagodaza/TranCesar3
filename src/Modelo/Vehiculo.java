@@ -18,7 +18,7 @@ public abstract class Vehiculo implements Imprimible {
 
     public Vehiculo(String placa, Ruta ruta) {
         this.placa = placa;
-        this.ruta = ruta;
+        this.ruta  = ruta;
         this.pasajerosActuales = 0;
         this.disponible = true;
     }
@@ -35,55 +35,25 @@ public abstract class Vehiculo implements Imprimible {
         if (tieneCupos()) pasajerosActuales++;
     }
 
-    
-    public String getPlaca() {
-        return placa;
+    public void liberarPasajero() {
+        if (pasajerosActuales > 0) pasajerosActuales--;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
+    public String getPlaca()              { return placa; }
+    public void setPlaca(String p)        { this.placa = p; }
+    public Ruta getRuta()                 { return ruta; }
+    public void setRuta(Ruta r)           { this.ruta = r; }
+    public int getCapacidadMaxima()       { return capacidadMaxima; }
+    public int getPasajerosActuales()     { return pasajerosActuales; }
+    public void setPasajerosActuales(int n) { this.pasajerosActuales = n; }
+    public boolean isDisponible()         { return disponible; }
+    public void setDisponible(boolean d)  { this.disponible = d; }
+    public double getTarifaBase()         { return tarifaBase; }
 
-    public Ruta getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(Ruta ruta) {
-        this.ruta = ruta;
-    }
-
-    public int getCapacidadMaxima() {
-        return capacidadMaxima;
-    }
-
-    public int getPasajerosActuales() {
-        return pasajerosActuales;
-    }
-
-    public void setPasajerosActuales(int pasajerosActuales) {
-        this.pasajerosActuales = pasajerosActuales;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
-
-    public double getTarifaBase() {
-        return tarifaBase;
-    }
- 
     public abstract String getTipo();
 
-    
     public String toCSV() {
-        return placa + ";" + ruta.getCodigo() + ";" + pasajerosActuales + ";" + (disponible ? "1" : "0");
+        return placa + ";" + ruta.getCodigo() + ";"
+               + pasajerosActuales + ";" + (disponible ? "1" : "0");
     }
 }
-
-  
-    
-   

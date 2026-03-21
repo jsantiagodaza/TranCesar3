@@ -30,7 +30,7 @@ public class Reserva implements Imprimible {
         this.fechaViaje    = fechaViaje;
         this.estado        = EstadoReserva.ACTIVA;
     }
-     
+         // Constructor para cargar desde archivo
       public Reserva(String codigo, Pasajero pasajero, Vehiculo vehiculo,
                    LocalDateTime fechaCreacion, LocalDateTime fechaViaje,
                    EstadoReserva estado) {
@@ -47,4 +47,27 @@ public class Reserva implements Imprimible {
             if (num >= contadorId) contadorId = num + 1;
         } catch (NumberFormatException ignored) {}
     }
+      
+       // ── Lógica de negocio ────────────────────────────────────
+
+    public boolean estaVencida() {
+        return estado == EstadoReserva.ACTIVA &&
+               LocalDateTime.now().isAfter(fechaCreacion.plusHours(24));
+    }
+
+    public void cancelar() {
+        if (estado == EstadoReserva.ACTIVA) {
+            estado = EstadoReserva.CANCELADA;
+            vehiculo.liberarPasajero();
+        }
+    }
+
+    public void convertir() {
+        if (estado == EstadoReserva.ACTIVA) {
+            estado = EstadoReserva.CONVERTIDA;
+            vehiculo.liberarPasajero(); // el ticket re-agrega por su cuenta
+        }
+    }
+
+    
 }
