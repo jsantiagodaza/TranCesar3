@@ -19,6 +19,9 @@ public class FestivoService {
     FESTIVOS_FIJOS.add(MonthDay.of(12, 25)); // Navidad
         }
     
+    public boolean esFestivo(LocalDate fecha) {
+    return FESTIVOS_FIJOS.contains(MonthDay.of(fecha.getMonth(), fecha.getDayOfMonth()));
+}
     
     
 }
