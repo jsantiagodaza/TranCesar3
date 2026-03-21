@@ -23,5 +23,12 @@ public class FestivoService {
     return FESTIVOS_FIJOS.contains(MonthDay.of(fecha.getMonth(), fecha.getDayOfMonth()));
 }
     
+    public double aplicarRecargo(double tarifaBase, LocalDate fecha) {
+    if (esFestivo(fecha)) return tarifaBase * 1.20;
+    return tarifaBase;
+}
+    
+    
+    
     
 }
