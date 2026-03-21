@@ -7,8 +7,10 @@ package Presentacion;
 import Logica.PersonaService;
 import Logica.ReservaService;
 import Logica.TicketService;
+import Modelo.Reserva;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -94,8 +96,15 @@ public class ReservaView {
         System.out.println(reservaService.crearReserva(
                 cedula, placa, fechaViaje, personaService));
     }
-       private void listarActivas() {
-       }
+      private void listarActivas() {
+        List<Reserva> lista = reservaService.listarActivas();
+        if (lista.isEmpty()) {
+            System.out.println("\n  No hay reservas activas en este momento.");
+            return;
+        }
+        System.out.println("\n--- Reservas activas (" + lista.size() + ") ---");
+        for (Reserva r : lista) r.imprimirDetalle();
+    }
            private void historialPasajero() {
            }
                private void convertirEnTicket() {
