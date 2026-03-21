@@ -11,7 +11,7 @@ package Modelo;
 
 public class Buseta extends Vehiculo {
 
-    public Buseta(String placa, String ruta) {
+    public Buseta(String placa, Ruta ruta) {
         super(placa, ruta);
         this.capacidadMaxima = 19;
         this.tarifaBase = 8000;
@@ -24,8 +24,7 @@ public class Buseta extends Vehiculo {
     public void imprimirDetalle() {
         System.out.println("========== BUSETA ==========");
         System.out.println("Placa           : " + placa);
-        System.out.println("Ruta            : " + ruta);
-        System.out.println("Capacidad máx.  : " + capacidadMaxima);
+        System.out.println("Capacidad max.  : " + capacidadMaxima);
         System.out.println("Pasajeros act.  : " + pasajerosActuales);
         System.out.println("Cupos disponib. : " + getCuposDisponibles());
         System.out.println("Tarifa base     : $" + String.format("%,.0f", tarifaBase));

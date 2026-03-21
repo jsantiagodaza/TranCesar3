@@ -7,7 +7,11 @@ package Presentacion;
 import Logica.EstadisticaService;
 import Logica.TicketService;
 import Logica.VehiculoService;
+import Modelo.Ticket;
 import Modelo.Vehiculo;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -33,25 +37,42 @@ private EstadisticaService estadisticaService;
     }
 
     public void mostrarMenu() {
- int opcion;
+        int opcion;
         do {
-            System.out.println("\n╔========================================+");
-            System.out.println("|      REPORTES Y ESTADISTICAS           |");
+            System.out.println("\n========================================+");
+              System.out.println("|       REPORTES Y ESTADISTICAS           |");
             System.out.println("+========================================+");
-            System.out.println("|  1. Total dinero recaudado             |");
-            System.out.println("|  2. Pasajeros por tipo                 |");
-            System.out.println("|  3. Veiculo con mas tickets           |");
-            System.out.println("|  4. Tickets vendidos por vehiculo      |");
-            System.out.println("|  0. Volver                             |");
+            System.out.println("|  1. Total dinero recaudado              |");
+            System.out.println("|  2. Pasajeros por tipo                  |");
+            System.out.println("|  3. Vehiculo con mas tickets            |");
+            System.out.println("|  4. Tickets por vehiculo (placa)        |");
+            System.out.println("|  --- FILTROS ---                        |");
+            System.out.println("|  5. Tickets por fecha                   |");
+            System.out.println("|  6. Tickets por tipo de vehiculo        |");
+            System.out.println("|  7. Tickets por tipo de pasajero        |");
+            System.out.println("|  8. Resumen del dia actual              |");
+            System.out.println("|  0. Volver                              |");
             System.out.println("+========================================+");
             System.out.print("  Opcion: ");
             opcion = leerInt();
 
             switch (opcion) {
-                case 1: reporteTotalRecaudado();        break;
-                case 2: reportePasajerosPorTipo();      break;
-                case 3: reporteVehiculoConMasTickets(); break;
-                case 4: reporteTicketsPorVehiculo();    break;
+                case 1: reporteTotalRecaudado();  
+                break;
+                case 2: reportePasajerosPorTipo();    
+                break;
+                case 3: reporteVehiculoConMasTickets();
+                break;
+                case 4: reporteTicketsPorVehiculo();  
+                break;
+                case 5: reportePorFecha();            
+                break;
+                case 6: reportePorTipoVehiculo();      
+                break;
+                case 7: reportePorTipoPasajero();       
+                break;
+                case 8: resumenDiaActual();             
+                break;
                 case 0: break;
                 default: System.out.println("  Opcion invalida.");
             }
@@ -82,7 +103,7 @@ double total = estadisticaService.calcularTotalRecaudado();
         String placa = sc.nextLine().trim().toUpperCase();
         Vehiculo v = vehiculoService.buscarPorPlaca(placa);
         if (v == null) {
-            System.out.println("  No se encontro vehículo con placa " + placa);
+            System.out.println("  No se encontro vehiculo con placa " + placa);
             return;
         }
         System.out.println("\n  Vehiculo : " + v.getTipo() + " - " + placa);
@@ -97,6 +118,64 @@ double total = estadisticaService.calcularTotalRecaudado();
         System.out.printf("  %-15s : %d%n", "Estudiante",   mapa.getOrDefault("Estudiante",  0));
         System.out.printf("  %-15s : %d%n", "Adulto Mayor", mapa.getOrDefault("AdultoMayor", 0));
         System.out.printf("  %-15s : %d%n", "TOTAL tickets", total);
+    }
+       private void reportePorFecha() {
+        System.out.print("Ingrese fecha (yyyy-MM-dd): ");
+        String input = sc.nextLine().trim();
+        LocalDate fecha;
+        try { fecha = LocalDate.parse(input); }
+        catch (DateTimeParseException e) {
+            System.out.println("  Fecha invalida."); return;
+        }
+        List<Ticket> lista = ticketService.listarPorFecha(fecha);
+        System.out.println("\n--- Tickets del " + fecha + " (" + lista.size() + ") ---");
+        if (lista.isEmpty()) { System.out.println("  Sin tickets para esa fecha."); return; }
+        for (Ticket t : lista) t.imprimirDetalle();
+    }
+        private void reportePorTipoVehiculo() {
+        System.out.println("Tipo: 1) Buseta  2) MicroBus  3) Bus");
+        System.out.print("Seleccione: ");
+        int op = leerInt();
+        String tipo;
+        switch (op) {
+            case 1: tipo = "Buseta";   break;
+            case 2: tipo = "MicroBus"; break;
+            case 3: tipo = "Bus";      break;
+            default: System.out.println("  Opcion inválida."); return;
+        }
+        List<Ticket> lista = ticketService.listarPorTipoVehiculo(tipo);
+        System.out.println("\n--- Tickets en " + tipo + " (" + lista.size() + ") ---");
+        if (lista.isEmpty()) { System.out.println("  Sin tickets para ese tipo."); return; }
+        for (Ticket t : lista) t.imprimirDetalle();
+    }
+        private void reportePorTipoPasajero() {
+        System.out.println("Tipo: 1) Regular  2) Estudiante  3) Adulto Mayor");
+        System.out.print("Seleccione: ");
+        int op = leerInt();
+        String tipo;
+        switch (op) {
+            case 1: tipo = "Regular";     break;
+            case 2: tipo = "Estudiante";  break;
+            case 3: tipo = "AdultoMayor"; break;
+            default: System.out.println("  Opcion invalida."); return;
+        }
+        List<Ticket> lista = ticketService.listarPorTipoPasajero(tipo);
+        System.out.println("\n--- Tickets de pasajero tipo " + tipo + " (" + lista.size() + ") ---");
+        if (lista.isEmpty()) { System.out.println("  Sin tickets para ese tipo."); return; }
+        for (Ticket t : lista) t.imprimirDetalle();
+    }
+        private void resumenDiaActual() {
+        LocalDate hoy = LocalDate.now();
+        List<Ticket> lista = ticketService.listarPorFecha(hoy);
+        double totalHoy = 0;
+        for (Ticket t : lista) totalHoy += t.getValorFinal();
+
+        System.out.println("\n======================================");
+        System.out.println("|        RESUMEN DEL DIA: " + hoy + "  |");
+        System.out.println("======================================");
+        System.out.printf ("|  Tickets vendidos = %-17d|%n", lista.size());
+        System.out.printf ("|  Total recaudado  = $%,14.0f  |%n", totalHoy);
+        System.out.println("======================================");
     }
   private int leerInt() {
         try {
