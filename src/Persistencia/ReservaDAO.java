@@ -27,7 +27,22 @@ public class ReservaDAO {
     if (!f.exists()) return lista;
 
     try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-
+        String linea;
+        while ((linea = br.readLine()) != null) {
+        linea = linea.trim();
+         if (linea.isEmpty()) continue;
+    
+            String[] c = linea.split(";", -1);
+                    if (c.length < 6) continue;
+                    
+                    
+                    
+                    
+            
+                    
+            }                    
+        
+        
     } catch (IOException e) {
         System.err.println("Error al cargar reservas: " + e.getMessage());
     }
