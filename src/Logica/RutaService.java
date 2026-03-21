@@ -14,7 +14,12 @@ public class RutaService {
     this.dao   = new RutaDAO();
     this.rutas = dao.cargarTodos();
 }
-    
+        public String registrarRuta(String codigo, String origen, String destino,
+                            double distancia, int tiempoMinutos) {
+         if (buscarPorCodigo(codigo) != null)
+        return "ERROR: Ya existe una ruta con el codigo " + codigo;
+         if (codigo == null || codigo.trim().isEmpty())
+        return "ERROR: El codigo no puede estar vacio.";
     
     
     
