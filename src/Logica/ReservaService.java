@@ -141,7 +141,7 @@ public class ReservaService {
     return resultado;
 }
 
-public List<Reserva> historialPasajero(String cedula) {
+    public List<Reserva> historialPasajero(String cedula) {
     List<Reserva> resultado = new ArrayList<>();
     for (Reserva r : reservas)
         if (r.getPasajero().getCedula().equals(cedula)) resultado.add(r);
@@ -149,21 +149,13 @@ public List<Reserva> historialPasajero(String cedula) {
 }
     
 
-    
-    
-    
-    
-    
-    
-    
+    public Reserva buscarPorCodigo(String codigo) {
+    for (Reserva r : reservas)
+        if (r.getCodigo().equalsIgnoreCase(codigo)) return r;
+    return null;
+}
 
-    
-    
-    
-    
-    
-    
-    
+    public List<Reserva> getReservasCargadas() { return reservas; }
     
     
 }
