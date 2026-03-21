@@ -16,5 +16,20 @@ public class ReservaService {
     
     
     
+    public ReservaService(VehiculoService vehiculoService,
+                      PersonaService personaService) {
+    this.dao             = new ReservaDAO();
+    this.vehiculoService = vehiculoService;
+    this.festivoService  = new FestivoService();
+    this.reservas = dao.cargarTodos(
+            personaService.getPasajerosCargados(),
+            vehiculoService.listarTodos()
+    );
+}
+    
+    
+    
+    
+    
     
 }
