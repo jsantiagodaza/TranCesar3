@@ -59,6 +59,16 @@ public class ReservaService {
 }
     
     
+    Reserva nueva = new Reserva(pasajero, vehiculo, fechaViaje);
+vehiculo.agregarPasajero();
+reservas.add(nueva);
+dao.guardar(nueva);
+vehiculoService.guardarCambios();
+
+return "OK: Reserva " + nueva.getCodigo() + " creada para "
+       + pasajero.getNombre() + " en vehiculo " + placaVehiculo + ".";
+    
+    
     
     
     
