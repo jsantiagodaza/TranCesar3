@@ -30,4 +30,21 @@ public class Reserva implements Imprimible {
         this.fechaViaje    = fechaViaje;
         this.estado        = EstadoReserva.ACTIVA;
     }
+     
+      public Reserva(String codigo, Pasajero pasajero, Vehiculo vehiculo,
+                   LocalDateTime fechaCreacion, LocalDateTime fechaViaje,
+                   EstadoReserva estado) {
+        this.codigo        = codigo;
+        this.pasajero      = pasajero;
+        this.vehiculo      = vehiculo;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaViaje    = fechaViaje;
+        this.estado        = estado;
+
+        // Mantener contador coherente
+        try {
+            int num = Integer.parseInt(codigo.replace("RES-", ""));
+            if (num >= contadorId) contadorId = num + 1;
+        } catch (NumberFormatException ignored) {}
+    }
 }
