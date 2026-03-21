@@ -7,6 +7,8 @@ package Presentacion;
 import Logica.PersonaService;
 import Logica.ReservaService;
 import Logica.TicketService;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -64,8 +66,34 @@ public class ReservaView {
             }
         } while (opcion != 0);
     }
-      public void crearReserva(){
-      }
+     
+     private void crearReserva() {
+        System.out.println("\n--- Crear Reserva ---");
+        System.out.print("Cedula del pasajero : ");
+        String cedula = sc.nextLine().trim();
+
+        System.out.print("Placa del vehiculo  : ");
+        String placa = sc.nextLine().trim().toUpperCase();
+
+        System.out.print("Fecha y hora del viaje (yyyy-MM-ddTHH:mm, ej: 2025-08-15T08:00): ");
+        String fechaStr = sc.nextLine().trim();
+
+        LocalDateTime fechaViaje;
+        try {
+            fechaViaje = LocalDateTime.parse(fechaStr);
+        } catch (DateTimeParseException e) {
+            System.out.println("  ERROR: Formato de fecha invalido. Use yyyy-MM-ddTHH:mm");
+            return;
+        }
+
+        if (fechaViaje.isBefore(LocalDateTime.now())) {
+            System.out.println("  ERROR: La fecha del viaje debe ser futura.");
+            return;
+        }
+
+        System.out.println(reservaService.crearReserva(
+                cedula, placa, fechaViaje, personaService));
+    }
        private void listarActivas() {
        }
            private void historialPasajero() {
