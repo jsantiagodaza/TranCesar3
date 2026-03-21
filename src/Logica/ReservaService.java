@@ -26,6 +26,8 @@ public class ReservaService {
             vehiculoService.listarTodos()
     );
     
+    }
+    
         public String crearReserva(String cedulaPasajero, String placaVehiculo,
                            LocalDateTime fechaViaje,
                            PersonaService personaService) {
@@ -44,22 +46,41 @@ public class ReservaService {
     if (!vehiculo.tieneCupos())
         return "ERROR: El vehiculo " + placaVehiculo
                + " no tiene cupos disponibles (tickets + reservas activas).";
+    
+    LocalDate diaViaje = fechaViaje.toLocalDate();
+    for (Reserva r : reservas) {
+    if (r.getEstado() == EstadoReserva.ACTIVA
+            && r.getPasajero().getCedula().equals(cedulaPasajero)
+            && r.getVehiculo().getPlaca().equalsIgnoreCase(placaVehiculo)
+            && r.getFechaViaje().toLocalDate().equals(diaViaje)) {
+        return "ERROR: El pasajero ya tiene una reserva activa ("
+               + r.getCodigo() + ") para ese vehiculo en esa fecha.";
+    }
 }
     
     
     
     
     
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
     
     
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+
 }
