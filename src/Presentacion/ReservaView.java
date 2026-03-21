@@ -105,8 +105,20 @@ public class ReservaView {
         System.out.println("\n--- Reservas activas (" + lista.size() + ") ---");
         for (Reserva r : lista) r.imprimirDetalle();
     }
-           private void historialPasajero() {
-           }
+      private void historialPasajero() {
+        System.out.println("\n--- Historial de Reservas por Pasajero ---");
+        System.out.print("Cedula del pasajero: ");
+        String cedula = sc.nextLine().trim();
+
+        List<Reserva> lista = reservaService.historialPasajero(cedula);
+        if (lista.isEmpty()) {
+            System.out.println("  No hay reservas registradas para ese pasajero.");
+            return;
+        }
+        System.out.println("\n  Historial (" + lista.size() + " reserva(s)):");
+        for (Reserva r : lista) r.imprimirDetalle();
+    }
+
                private void convertirEnTicket() {
                }
                    private void verificarVencidas() {
