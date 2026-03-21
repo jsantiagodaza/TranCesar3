@@ -48,25 +48,43 @@ public class ReservaService {
                + " no tiene cupos disponibles (tickets + reservas activas).";
     
     LocalDate diaViaje = fechaViaje.toLocalDate();
-    for (Reserva r : reservas) {
-    if (r.getEstado() == EstadoReserva.ACTIVA
-            && r.getPasajero().getCedula().equals(cedulaPasajero)
-            && r.getVehiculo().getPlaca().equalsIgnoreCase(placaVehiculo)
-            && r.getFechaViaje().toLocalDate().equals(diaViaje)) {
-        return "ERROR: El pasajero ya tiene una reserva activa ("
+                for (Reserva r : reservas) {
+                if (r.getEstado() == EstadoReserva.ACTIVA
+                  && r.getPasajero().getCedula().equals(cedulaPasajero)
+                  && r.getVehiculo().getPlaca().equalsIgnoreCase(placaVehiculo)
+                     && r.getFechaViaje().toLocalDate().equals(diaViaje)) {
+                    return "ERROR: El pasajero ya tiene una reserva activa ("
                + r.getCodigo() + ") para ese vehiculo en esa fecha.";
     }
 }
     
     
-    Reserva nueva = new Reserva(pasajero, vehiculo, fechaViaje);
-vehiculo.agregarPasajero();
-reservas.add(nueva);
-dao.guardar(nueva);
-vehiculoService.guardarCambios();
+            Reserva nueva = new Reserva(pasajero, vehiculo, fechaViaje);
+                    vehiculo.agregarPasajero();
+                    reservas.add(nueva);
+            dao.guardar(nueva);
+                    vehiculoService.guardarCambios();
 
-return "OK: Reserva " + nueva.getCodigo() + " creada para "
-       + pasajero.getNombre() + " en vehiculo " + placaVehiculo + ".";
+                        return "OK: Reserva " + nueva.getCodigo() + " creada para "
+                              + pasajero.getNombre() + " en vehiculo " + placaVehiculo + ".";
+
+
+ }
+        
+        
+        
+        public String cancelarReserva(String codigo) {
+             Reserva r = buscarPorCodigo(codigo);
+            if (r == null)
+              return "ERROR: No se encontro reserva con codigo " + codigo;
+            if (r.getEstado() != EstadoReserva.ACTIVA)
+        return "ERROR: La reserva " + codigo + " ya esta " + r.getEstado() + ".";
+
+             r.cancelar();
+            dao.reescribirTodos(reservas);
+             vehiculoService.guardarCambios();
+             return "OK: Reserva " + codigo + " cancelada. Cupo liberado.";
+}
     
     
     
@@ -93,4 +111,3 @@ return "OK: Reserva " + nueva.getCodigo() + " creada para "
 }
         
 
-}
