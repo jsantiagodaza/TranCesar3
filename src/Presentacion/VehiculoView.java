@@ -4,27 +4,33 @@
  */
 package Presentacion;
 
-import Logica.VehiculoService;
+/**
+ *
+ * @author 2jcue
+ */
 import Modelo.Vehiculo;
+import Logica.RutaService;
+import Logica.VehiculoService;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author santi
- */
 public class VehiculoView {
+
     private VehiculoService vehiculoService;
+    private RutaService     rutaService;
     private Scanner sc;
-   public VehiculoView(VehiculoService vehiculoService, Scanner sc) {
+
+    public VehiculoView(VehiculoService vehiculoService,
+                        RutaService rutaService, Scanner sc) {
         this.vehiculoService = vehiculoService;
+        this.rutaService     = rutaService;
         this.sc = sc;
     }
 
-  public void mostrarMenu() {
+    public void mostrarMenu() {
         int opcion;
         do {
-            System.out.println("\n╔==============================+");
+            System.out.println("\n+==============================+");
             System.out.println("|      GESTION DE VEHICULOS    |");
             System.out.println("+==============================+");
             System.out.println("|  1. Registrar vehiculo       |");
@@ -34,18 +40,21 @@ public class VehiculoView {
             System.out.println("+==============================+");
             System.out.print("  Opcion: ");
             opcion = leerInt();
-
+            
             switch (opcion) {
-                case 1: registrarVehiculo(); break;
-                case 2: listarVehiculos();   break;
-                case 3: buscarPorPlaca();    break;
+                case 1: registrarVehiculo();
+                break;
+                case 2: listarVehiculos();  
+                break;
+                case 3: buscarPorPlaca();   
+                break;
                 case 0: break;
-                default: System.out.println("  Opcion invalida.");
+                default: System.out.println("  Opción invalida.");
             }
         } while (opcion != 0);
     }
 
-       private void registrarVehiculo() {
+    private void registrarVehiculo() {
         System.out.println("\n--- Registrar Vehiculo ---");
         System.out.println("  1) Buseta   2) MicroBus   3) Bus");
         System.out.print("Tipo     : ");
@@ -76,30 +85,23 @@ public class VehiculoView {
         System.out.println(vehiculoService.registrarVehiculo(tipo, placa, codRuta));
     }
 
-
-  private void listarVehiculos() {
+    private void listarVehiculos() {
         List<Vehiculo> lista = vehiculoService.listarTodos();
-        if (lista.isEmpty()) {
-            System.out.println("  No hay vehiculos registrados.");
-            return;
-        }
-        System.out.println("\n--- Vehiculos registrados (" + lista.size() + ") ---");
+        if (lista.isEmpty()) { System.out.println("  No hay vehiculos registrados."); return; }
+        System.out.println("\n--- Vehiculos (" + lista.size() + ") ---");
         for (Vehiculo v : lista) v.imprimirDetalle();
     }
 
-      private void buscarPorPlaca() {
-        System.out.print("Ingrese placa: ");
+    private void buscarPorPlaca() {
+        System.out.print("Placa: ");
         String placa = sc.nextLine().trim().toUpperCase();
         Vehiculo v = vehiculoService.buscarPorPlaca(placa);
-        if (v == null) System.out.println("  No se encontro vehiculo con placa " + placa);
+        if (v == null) System.out.println("  No encontrado.");
         else v.imprimirDetalle();
     }
 
-     private int leerInt() {
-        try {
-            return Integer.parseInt(sc.nextLine().trim());
-        } catch (NumberFormatException e) {
-            return -1;
-        }
+    private int leerInt() {
+        try { return Integer.parseInt(sc.nextLine().trim()); }
+        catch (NumberFormatException e) { return -1; }
     }
 }

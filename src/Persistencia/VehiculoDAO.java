@@ -1,5 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Persistencia;
-import Presentacion.*;
+
+/**
+ *
+ * @author 2jcue
+ */
 import Modelo.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -12,24 +20,23 @@ public class VehiculoDAO {
     private static final String ARCHIVO_MICROBUS = "microbus.txt";
 
     public void guardar(Vehiculo v) {
-        String archivo = getArchivo(v);
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(getArchivo(v), true))) {
             bw.write(v.toCSV());
             bw.newLine();
         } catch (IOException e) {
-            System.err.println("Error al guardar vehiculo: " + e.getMessage());
+            System.err.println("Error al guardar vehículo: " + e.getMessage());
         }
     }
 
-    public List<Vehiculo> cargarTodos() {
+    public List<Vehiculo> cargarTodos(List<Ruta> rutas) {
         List<Vehiculo> lista = new ArrayList<>();
-        lista.addAll(cargarDesdeArchivo(ARCHIVO_BUSETA,   "Buseta"));
-        lista.addAll(cargarDesdeArchivo(ARCHIVO_BUS,      "Bus"));
-        lista.addAll(cargarDesdeArchivo(ARCHIVO_MICROBUS, "MicroBus"));
+        lista.addAll(cargarDesdeArchivo(ARCHIVO_BUSETA,   "Buseta",   rutas));
+        lista.addAll(cargarDesdeArchivo(ARCHIVO_BUS,      "Bus",      rutas));
+        lista.addAll(cargarDesdeArchivo(ARCHIVO_MICROBUS, "MicroBus", rutas));
         return lista;
     }
 
-    private List<Vehiculo> cargarDesdeArchivo(String archivo, String tipo) {
+    private List<Vehiculo> cargarDesdeArchivo(String archivo, String tipo, List<Ruta> rutas) {
         List<Vehiculo> lista = new ArrayList<>();
         File f = new File(archivo);
         if (!f.exists()) return lista;
@@ -43,9 +50,12 @@ public class VehiculoDAO {
                 if (campos.length < 4) continue;
 
                 String placa       = campos[0];
-                String ruta        = campos[1];
+                String codigoRuta  = campos[1];
                 int pasajeros      = Integer.parseInt(campos[2]);
                 boolean disponible = campos[3].equals("1");
+
+                Ruta ruta = buscarRuta(rutas, codigoRuta);
+                if (ruta == null) continue;
 
                 Vehiculo v = crearVehiculo(tipo, placa, ruta);
                 if (v != null) {
@@ -64,32 +74,35 @@ public class VehiculoDAO {
         borrarContenido(ARCHIVO_BUSETA);
         borrarContenido(ARCHIVO_BUS);
         borrarContenido(ARCHIVO_MICROBUS);
-        for (Vehiculo v : todos) {
-            guardar(v);
-        }
+        for (Vehiculo v : todos) guardar(v);
+    }
+
+    private Ruta buscarRuta(List<Ruta> rutas, String codigo) {
+        for (Ruta r : rutas)
+            if (r.getCodigo().equalsIgnoreCase(codigo)) return r;
+        return null;
     }
 
     private String getArchivo(Vehiculo v) {
         switch (v.getTipo()) {
-            case "Buseta":  return ARCHIVO_BUSETA;
-            case "Bus":     return ARCHIVO_BUS;
+            case "Buseta":   return ARCHIVO_BUSETA;
+            case "Bus":      return ARCHIVO_BUS;
             case "MicroBus": return ARCHIVO_MICROBUS;
-            default:        return "vehiculos.txt";
+            default:         return "vehiculos.txt";
         }
     }
 
-    private Vehiculo crearVehiculo(String tipo, String placa, String ruta) {
+    private Vehiculo crearVehiculo(String tipo, String placa, Ruta ruta) {
         switch (tipo) {
-            case "Buseta":  return new Buseta(placa, ruta);
-            case "Bus":     return new Bus(placa, ruta);
+            case "Buseta":   return new Buseta(placa, ruta);
+            case "Bus":      return new Bus(placa, ruta);
             case "MicroBus": return new Microbus(placa, ruta);
-            default:        return null;
+            default:         return null;
         }
     }
 
     private void borrarContenido(String archivo) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, false))) {
-            // vaciar archivo
         } catch (IOException e) {
             System.err.println("Error al limpiar " + archivo + ": " + e.getMessage());
         }

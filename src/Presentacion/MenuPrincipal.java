@@ -4,46 +4,46 @@
  */
 package Presentacion;
 
-import Logica.EstadisticaService;
-import Logica.PersonaService;
-import Logica.TicketService;
-import Logica.VehiculoService;
-import java.util.Scanner;
-
 /**
  *
- * @author santi
+ * @author 2jcue
  */
+import Logica.*;
+import java.util.Scanner;
+
 public class MenuPrincipal {
 
-
-    private VehiculoService vehiculoService;
-    private PersonaService personaService;
-    private TicketService ticketService;
+    private RutaService        rutaService;
+    private VehiculoService    vehiculoService;
+    private PersonaService     personaService;
+    private TicketService      ticketService;
     private EstadisticaService estadisticaService;
 
+    private RutaView     rutaView;
     private VehiculoView vehiculoView;
-    private PersonaView personaView;
-    private TicketView ticketView;
-    private ReporteView reporteView;
+    private PersonaView  personaView;
+    private TicketView   ticketView;
+    private ReporteView  reporteView;
 
     private Scanner sc;
 
     public MenuPrincipal() {
         sc = new Scanner(System.in);
 
-        vehiculoService    = new VehiculoService();
+        rutaService        = new RutaService();
+        vehiculoService    = new VehiculoService(rutaService);
         personaService     = new PersonaService();
         ticketService      = new TicketService(vehiculoService, personaService);
         estadisticaService = new EstadisticaService(ticketService);
 
-        vehiculoView = new VehiculoView(vehiculoService, sc);
+        rutaView     = new RutaView(rutaService, sc);
+        vehiculoView = new VehiculoView(vehiculoService, rutaService, sc);
         personaView  = new PersonaView(personaService, vehiculoService, sc);
         ticketView   = new TicketView(ticketService, personaService, sc);
         reporteView  = new ReporteView(estadisticaService, ticketService, vehiculoService, sc);
     }
 
-public void iniciar() {
+    public void iniciar() {
     System.out.println("+===========================================+");
     System.out.println("|         TRANSCESAR S.A.S.                 |");
     System.out.println("|   Sistema de Gestion de Tickets v2        |");
@@ -79,10 +79,7 @@ public void iniciar() {
 }
 
     private int leerInt() {
-        try {
-            return Integer.parseInt(sc.nextLine().trim());
-        } catch (NumberFormatException e) {
-            return -1;
-        }
+        try { return Integer.parseInt(sc.nextLine().trim()); }
+        catch (NumberFormatException e) { return -1; }
     }
 }

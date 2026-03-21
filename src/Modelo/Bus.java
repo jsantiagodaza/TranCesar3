@@ -8,9 +8,9 @@ package Modelo;
  *
  * @author 2jcue
  */
-public class Bus extends Vehiculo {
+ public class Bus extends Vehiculo {
 
-    public Bus(String placa, String ruta) {
+    public Bus(String placa, Ruta ruta) {
         super(placa, ruta);
         this.capacidadMaxima = 45;
         this.tarifaBase = 15000;
@@ -23,7 +23,7 @@ public class Bus extends Vehiculo {
     public void imprimirDetalle() {
         System.out.println("========== BUS ==========");
         System.out.println("Placa           : " + placa);
-        System.out.println("Ruta            : " + ruta);
+
         System.out.println("Capacidad max.  : " + capacidadMaxima);
         System.out.println("Pasajeros act.  : " + pasajerosActuales);
         System.out.println("Cupos disponib. : " + getCuposDisponibles());

@@ -1,19 +1,42 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Modelo;
 
+/**
+ *
+ * @author 2jcue
+ */
+import java.time.LocalDate;
+import java.time.Period;
 
 public abstract class Pasajero extends Persona {
     protected String tipo;
+    protected LocalDate fechaNacimiento;
 
-    public Pasajero(String cedula, String nombre, String tipo) {
+    public Pasajero(String cedula, String nombre, LocalDate fechaNacimiento) {
         super(cedula, nombre);
-        this.tipo = tipo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.tipo = determinarTipo();
     }
 
+    private String determinarTipo() {
+        int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+        if (edad >= 60) return "AdultoMayor";
+        return "Regular"; // subclase puede sobrescribir
+    }
+
+    public int getEdad() {
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
+    }
+
+    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
     public String getTipo() { return tipo; }
 
     public abstract double calcularDescuento();
 
     public String toCSV() {
-        return cedula + ";" + nombre + ";" + tipo;
+        return cedula + ";" + nombre + ";" + tipo + ";" + fechaNacimiento.toString();
     }
 }

@@ -17,37 +17,38 @@ public class VehiculoService {
 
     private VehiculoDAO dao;
     private List<Vehiculo> vehiculos;
+    private RutaService rutaService;
 
-    public VehiculoService() {
-        this.dao = new VehiculoDAO();
-        this.vehiculos = dao.cargarTodos();
+    public VehiculoService(RutaService rutaService) {
+        this.dao         = new VehiculoDAO();
+        this.rutaService = rutaService;
+        this.vehiculos   = dao.cargarTodos(rutaService.getRutasCargadas());
     }
-    
-    public String registrarVehiculo(String tipo, String placa, String ruta) {
-        if (buscarPorPlaca(placa) != null)
-            return "ERROR: Ya existe un vehiculo con la placa " + placa;
+
+    public String registrarVehiculo(String tipo, String placa, String codigoRuta) {
         if (placa == null || placa.trim().isEmpty())
             return "ERROR: La placa no puede estar vacia.";
-        if (ruta == null || ruta.trim().isEmpty())
-            return "ERROR: La ruta no puede estar vacia.";
+        if (buscarPorPlaca(placa) != null)
+            return "ERROR: Ya existe un vehiculo con la placa " + placa;
+
+        Ruta ruta = rutaService.buscarPorCodigo(codigoRuta);
+        if (ruta == null)
+            return "ERROR: No existe una ruta con el codigo " + codigoRuta;
 
         Vehiculo v;
         switch (tipo.toLowerCase()) {
-            case "buseta":   v = new Buseta(placa.toUpperCase(), ruta);  
-            break;
-            case "bus":      v = new Bus(placa.toUpperCase(), ruta);      
-            break;
-            case "microbus": v = new Microbus(placa.toUpperCase(), ruta); 
-            break;
+            case "buseta":   v = new Buseta(placa.toUpperCase(), ruta);   break;
+            case "bus":      v = new Bus(placa.toUpperCase(), ruta);      break;
+            case "microbus": v = new Microbus(placa.toUpperCase(), ruta); break;
             default: return "ERROR: Tipo de vehiculo no reconocido.";
         }
 
         vehiculos.add(v);
         dao.guardar(v);
-        return "OK: Vehiculo " + tipo + " con placa " + placa + " registrado correctamente.";
+        return "OK: Vehiculo " + tipo + " placa " + placa + " registrado en ruta " + codigoRuta + ".";
     }
-    
-     public Vehiculo buscarPorPlaca(String placa) {
+
+    public Vehiculo buscarPorPlaca(String placa) {
         for (Vehiculo v : vehiculos)
             if (v.getPlaca().equalsIgnoreCase(placa)) return v;
         return null;
@@ -60,5 +61,4 @@ public class VehiculoService {
     public void guardarCambios() {
         dao.reescribirTodos(vehiculos);
     }
-
 }

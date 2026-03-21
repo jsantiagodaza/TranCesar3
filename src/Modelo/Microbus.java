@@ -10,7 +10,7 @@ package Modelo;
  */
 public class Microbus extends Vehiculo {
 
-    public Microbus(String placa, String ruta) {
+    public Microbus(String placa, Ruta ruta) {
         super(placa, ruta);
         this.capacidadMaxima = 25;
         this.tarifaBase = 10000;
@@ -23,7 +23,6 @@ public class Microbus extends Vehiculo {
     public void imprimirDetalle() {
         System.out.println("========== MICROBUS ==========");
         System.out.println("Placa           : " + placa);
-        System.out.println("Ruta            : " + ruta);
         System.out.println("Capacidad max.  : " + capacidadMaxima);
         System.out.println("Pasajeros act.  : " + pasajerosActuales);
         System.out.println("Cupos disponib. : " + getCuposDisponibles());
