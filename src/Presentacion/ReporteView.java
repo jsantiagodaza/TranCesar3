@@ -101,6 +101,22 @@ double total = estadisticaService.calcularTotalRecaudado();
         System.out.printf("  %-15s : %d%n", "Adulto Mayor", mapa.getOrDefault("AdultoMayor", 0));
         System.out.printf("  %-15s : %d%n", "TOTAL tickets", total);
     }
+        private void reportePorTipoVehiculo() {
+        System.out.println("Tipo: 1) Buseta  2) MicroBus  3) Bus");
+        System.out.print("Seleccione: ");
+        int op = leerInt();
+        String tipo;
+        switch (op) {
+            case 1: tipo = "Buseta";   break;
+            case 2: tipo = "MicroBus"; break;
+            case 3: tipo = "Bus";      break;
+            default: System.out.println("  Opcion inválida."); return;
+        }
+        List<Ticket> lista = ticketService.listarPorTipoVehiculo(tipo);
+        System.out.println("\n--- Tickets en " + tipo + " (" + lista.size() + ") ---");
+        if (lista.isEmpty()) { System.out.println("  Sin tickets para ese tipo."); return; }
+        for (Ticket t : lista) t.imprimirDetalle();
+    }
         private void reportePorTipoPasajero() {
         System.out.println("Tipo: 1) Regular  2) Estudiante  3) Adulto Mayor");
         System.out.print("Seleccione: ");
