@@ -20,6 +20,18 @@ public class RutaService {
         return "ERROR: Ya existe una ruta con el codigo " + codigo;
          if (codigo == null || codigo.trim().isEmpty())
         return "ERROR: El codigo no puede estar vacio.";
+         
+         Ruta r = new Ruta(codigo.toUpperCase(), origen, destino, distancia, tiempoMinutos);
+        rutas.add(r);
+        dao.guardar(r);
+        return "OK: Ruta " + codigo + " (" + origen + " → " + destino + ") registrada.";
+        
+        }
+        
+        
+        
+        
+        
     
     
     
