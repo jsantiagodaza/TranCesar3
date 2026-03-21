@@ -3,16 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/trancesar3/Main.java</file>
-            <file>file:/C:/Users/santi/OneDrive/Documents/NetBeansProjects/TranCesar3/src/Logica/VehiculoService.java</file>
-=======
-            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Persistencia/VehiculoDAO.java</file>
-            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/MenuPrincipal.java</file>
-            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/TicketView.java</file>
-            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/ReporteView.java</file>
-            <file>file:/C:/Users/2jcue/OneDrive/Documentos/NetBeansProjects/TranCesar3/src/Presentacion/VehiculoView.java</file>
->>>>>>> 956d17a89a287ac6391736440b4cc69965d502e9
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/TranCesar3/src/Logica/FestivoService.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/TranCesar3/src/Logica/RutaService.java</file>
         </group>
     </open-files>
 </project-private>
