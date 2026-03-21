@@ -41,6 +41,12 @@ public class ReservaDAO {
                 LocalDateTime fechaCreacion = LocalDateTime.parse(c[3]);
                 LocalDateTime fechaViaje = LocalDateTime.parse(c[4]);
                 EstadoReserva estado = EstadoReserva.valueOf(c[5]); 
+                Pasajero p = buscarPasajero(pasajeros, cedulaPasajero);
+                Vehiculo v = buscarVehiculo(vehiculos, placaVehiculo);
+
+                    if (p != null && v != null) {
+                    lista.add(new Reserva(codigo, p, v, fechaCreacion, fechaViaje, estado));
+                    }
             }                   
         
     } catch (IOException e) {
@@ -49,6 +55,10 @@ public class ReservaDAO {
 
     return lista;
 }
+    
+    
+    
+    
     
     
   
