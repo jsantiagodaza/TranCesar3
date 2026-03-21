@@ -35,13 +35,13 @@ public class ReservaDAO {
             String[] c = linea.split(";", -1);
                     if (c.length < 6) continue;
                     
-                    
-                    
-                    
-            
-                    
-            }                    
-        
+                String codigo = c[0];
+                String cedulaPasajero = c[1];
+                String placaVehiculo = c[2];
+                LocalDateTime fechaCreacion = LocalDateTime.parse(c[3]);
+                LocalDateTime fechaViaje = LocalDateTime.parse(c[4]);
+                EstadoReserva estado = EstadoReserva.valueOf(c[5]); 
+            }                   
         
     } catch (IOException e) {
         System.err.println("Error al cargar reservas: " + e.getMessage());
@@ -51,35 +51,7 @@ public class ReservaDAO {
 }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
     
     
