@@ -37,25 +37,42 @@ private EstadisticaService estadisticaService;
     }
 
     public void mostrarMenu() {
- int opcion;
+        int opcion;
         do {
-            System.out.println("\n╔========================================+");
-            System.out.println("|      REPORTES Y ESTADISTICAS           |");
+            System.out.println("\n========================================+");
+              System.out.println("|       REPORTES Y ESTADISTICAS           |");
             System.out.println("+========================================+");
-            System.out.println("|  1. Total dinero recaudado             |");
-            System.out.println("|  2. Pasajeros por tipo                 |");
-            System.out.println("|  3. Veiculo con mas tickets           |");
-            System.out.println("|  4. Tickets vendidos por vehiculo      |");
-            System.out.println("|  0. Volver                             |");
+            System.out.println("|  1. Total dinero recaudado              |");
+            System.out.println("|  2. Pasajeros por tipo                  |");
+            System.out.println("|  3. Vehiculo con mas tickets            |");
+            System.out.println("|  4. Tickets por vehiculo (placa)        |");
+            System.out.println("|  --- FILTROS ---                        |");
+            System.out.println("|  5. Tickets por fecha                   |");
+            System.out.println("|  6. Tickets por tipo de vehiculo        |");
+            System.out.println("|  7. Tickets por tipo de pasajero        |");
+            System.out.println("|  8. Resumen del dia actual              |");
+            System.out.println("|  0. Volver                              |");
             System.out.println("+========================================+");
             System.out.print("  Opcion: ");
             opcion = leerInt();
 
             switch (opcion) {
-                case 1: reporteTotalRecaudado();        break;
-                case 2: reportePasajerosPorTipo();      break;
-                case 3: reporteVehiculoConMasTickets(); break;
-                case 4: reporteTicketsPorVehiculo();    break;
+                case 1: reporteTotalRecaudado();  
+                break;
+                case 2: reportePasajerosPorTipo();    
+                break;
+                case 3: reporteVehiculoConMasTickets();
+                break;
+                case 4: reporteTicketsPorVehiculo();  
+                break;
+                case 5: reportePorFecha();            
+                break;
+                case 6: reportePorTipoVehiculo();      
+                break;
+                case 7: reportePorTipoPasajero();       
+                break;
+                case 8: resumenDiaActual();             
+                break;
                 case 0: break;
                 default: System.out.println("  Opcion invalida.");
             }
