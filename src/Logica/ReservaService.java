@@ -87,7 +87,36 @@ public class ReservaService {
 }
     
     
-    
+    public String convertirEnTicket(String codigo,
+                                PersonaService personaService,
+                                TicketService ticketService) {
+    Reserva r = buscarPorCodigo(codigo);
+    if (r == null)
+        return "ERROR: No se encontro reserva con codigo " + codigo;
+    if (r.getEstado() != EstadoReserva.ACTIVA)
+        return "ERROR: La reserva " + codigo + " ya esta " + r.getEstado() + ".";
+
+    r.convertir();
+
+    String origen  = r.getVehiculo().getRuta().getCiudadOrigen();
+    String destino = r.getVehiculo().getRuta().getCiudadDestino();
+
+    String resultado = ticketService.venderTicket(
+            r.getPasajero().getCedula(),
+            r.getVehiculo().getPlaca(),
+            origen, destino,
+            personaService
+    );
+
+    dao.reescribirTodos(reservas);
+    vehiculoService.guardarCambios();
+
+    if (resultado.startsWith("OK")) {
+        return "OK: Reserva " + codigo + " convertida en ticket. " + resultado;
+    } else {
+        return "ERROR al convertir: " + resultado;
+    }
+}
     
     
 
