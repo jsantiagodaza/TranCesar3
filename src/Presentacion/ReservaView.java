@@ -128,6 +128,12 @@ public class ReservaView {
                 codigo, personaService, ticketService);
         System.out.println("  " + resultado);
     }
+  private void cancelarReserva() {
+        System.out.println("\n--- Cancelar Reserva ---");
+        System.out.print("Codigo de la reserva (ej: RES-0001): ");
+        String codigo = sc.nextLine().trim().toUpperCase();
+        System.out.println(reservaService.cancelarReserva(codigo));
+    }
 
                    private void verificarVencidas() {
                    }
