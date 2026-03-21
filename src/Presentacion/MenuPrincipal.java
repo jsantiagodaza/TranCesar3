@@ -43,50 +43,40 @@ public class MenuPrincipal {
         reporteView  = new ReporteView(estadisticaService, ticketService, vehiculoService, sc);
     }
 
-    public void iniciar() {
-        System.out.println("+===========================================+");
-        System.out.println("|         TRANSCESAR S.A.S.                 |");
-        System.out.println("|   Sistema de Gestion de Tickets           |");
-        System.out.println("+===========================================+");
-        System.out.println("  Datos cargados desde archivos correctamente.");
+public void iniciar() {
+    System.out.println("+===========================================+");
+    System.out.println("|         TRANSCESAR S.A.S.                 |");
+    System.out.println("|   Sistema de Gestion de Tickets v2        |");
+    System.out.println("+===========================================+");
 
-        int opcion;
-        do {
-            System.out.println("\n+===================================+");
-            System.out.println("|          MENU PRINCIPAL           |");
-            System.out.println("+==================================+");
-            System.out.println("|  1. GestiOn de Vehiculos          |");
-            System.out.println("|  2. Gestion de Personas           |");
-            System.out.println("|  3. Venta de Tickets              |");
-            System.out.println("|  4. Reportes y Estadisticas       |");
-            System.out.println("|  0. Salir                         |");
-            System.out.println("+===================================+");
-            System.out.print("  Opcion: ");
-            opcion = leerInt();
+    int opcion;
+    do {
+        System.out.println("\n+====================================+");
+        System.out.println("|          MENU PRINCIPAL            |");
+        System.out.println("+====================================+");
+        System.out.println("|  1. Gestion de Rutas               |");
+        System.out.println("|  2. Gestion de Vehiculos           |");
+        System.out.println("|  3. Gestion de Personas            |");
+        System.out.println("|  4. Venta de Tickets               |");
+        System.out.println("|  5. Reportes y Estadisticas        |");
+        System.out.println("|  0. Salir                          |");
+        System.out.println("+====================================+");
+        System.out.print("  Opcion: ");
+        opcion = leerInt();
 
-            switch (opcion) {
-                case 1:
-                    vehiculoView.mostrarMenu();
-                    break;
-                case 2:
-                    personaView.mostrarMenu();
-                    break;
-                case 3:
-                    ticketView.mostrarMenu();
-                    break;
-                case 4:
-                    reporteView.mostrarMenu();
-                    break;
-                case 0:
-                    System.out.println("\n  ¡Hasta luego! Sistema cerrado.");
-                    break;
-                default:
-                    System.out.println("  Opcion invalida. Intente de nuevo.");
-            }
-        } while (opcion != 0);
+        switch (opcion) {
+            case 1: rutaView.mostrarMenu();     break;
+            case 2: vehiculoView.mostrarMenu(); break;
+            case 3: personaView.mostrarMenu();  break;
+            case 4: ticketView.mostrarMenu();   break;
+            case 5: reporteView.mostrarMenu();  break;
+            case 0: System.out.println("\n  Hasta luego!"); break;
+            default: System.out.println("  Opcion invalida.");
+        }
+    } while (opcion != 0);
 
-        sc.close();
-    }
+    sc.close();
+}
 
     private int leerInt() {
         try {
