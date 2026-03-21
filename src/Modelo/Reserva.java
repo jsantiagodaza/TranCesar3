@@ -69,5 +69,32 @@ public class Reserva implements Imprimible {
         }
     }
 
+     @Override
+    public void imprimirDetalle() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        System.out.println("========== RESERVA ==========");
+        System.out.println("Codigo    : " + codigo);
+        System.out.println("Pasajero  : " + pasajero.getNombre()
+                           + " (" + pasajero.getCedula() + ")");
+        System.out.println("Vehiculo  : " + vehiculo.getTipo()
+                           + " - " + vehiculo.getPlaca());
+        System.out.println("Creada    : " + fechaCreacion.format(fmt));
+        System.out.println("Viaje     : " + fechaViaje.format(fmt));
+        System.out.println("Estado    : " + estado);
+        System.out.println("=============================");
+    }
+
+    // ── CSV ──────────────────────────────────────────────────
+
+    public String toCSV() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        return codigo + ";" +
+               pasajero.getCedula() + ";" +
+               vehiculo.getPlaca() + ";" +
+               fechaCreacion.format(fmt) + ";" +
+               fechaViaje.format(fmt) + ";" +
+               estado.name();
+    }
+    
     
 }
