@@ -8,6 +8,8 @@ package Modelo;
  *
  * @author 2jcue
  */
-public class EstadoReserva {
-    
+public enum EstadoReserva {
+    ACTIVA,
+    CONVERTIDA,
+    CANCELADA
 }
