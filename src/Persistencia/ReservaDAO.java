@@ -56,7 +56,16 @@ public class ReservaDAO {
     return lista;
 }
     
-    
+        public void reescribirTodos(List<Reserva> reservas) {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, false))) {
+        for (Reserva r : reservas) {
+            bw.write(r.toCSV());
+            bw.newLine();
+        }
+    } catch (IOException e) {
+        System.err.println("Error al reescribir reservas: " + e.getMessage());
+    }
+}
     
     
     
