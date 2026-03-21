@@ -82,7 +82,7 @@ double total = estadisticaService.calcularTotalRecaudado();
         String placa = sc.nextLine().trim().toUpperCase();
         Vehiculo v = vehiculoService.buscarPorPlaca(placa);
         if (v == null) {
-            System.out.println("  No se encontro vehículo con placa " + placa);
+            System.out.println("  No se encontro vehiculo con placa " + placa);
             return;
         }
         System.out.println("\n  Vehiculo : " + v.getTipo() + " - " + placa);

@@ -77,7 +77,7 @@ public class PersonaView {
         String nombre = sc.nextLine().trim();
         System.out.print("N° Licencia : ");
         String numLic = sc.nextLine().trim();
-        System.out.println("Categoría: 1) B1  2) B2  3) C1  4) C2");
+        System.out.println("Categoria: 1) B1  2) B2  3) C1  4) C2");
         System.out.print("Seleccione  : ");
         int cat = leerInt();
         String categoria;

@@ -25,7 +25,7 @@ public class Buseta extends Vehiculo {
         System.out.println("========== BUSETA ==========");
         System.out.println("Placa           : " + placa);
         System.out.println("Ruta            : " + ruta);
-        System.out.println("Capacidad máx.  : " + capacidadMaxima);
+        System.out.println("Capacidad max.  : " + capacidadMaxima);
         System.out.println("Pasajeros act.  : " + pasajerosActuales);
         System.out.println("Cupos disponib. : " + getCuposDisponibles());
         System.out.println("Tarifa base     : $" + String.format("%,.0f", tarifaBase));

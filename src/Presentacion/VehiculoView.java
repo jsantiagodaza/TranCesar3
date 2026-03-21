@@ -40,7 +40,7 @@ public class VehiculoView {
                 case 2: listarVehiculos();   break;
                 case 3: buscarPorPlaca();    break;
                 case 0: break;
-                default: System.out.println("  Opcion inválida.");
+                default: System.out.println("  Opcion invalida.");
             }
         } while (opcion != 0);
     }
@@ -84,7 +84,7 @@ public class VehiculoView {
         System.out.print("Ingrese placa: ");
         String placa = sc.nextLine().trim().toUpperCase();
         Vehiculo v = vehiculoService.buscarPorPlaca(placa);
-        if (v == null) System.out.println("  No se encontró vehiculo con placa " + placa);
+        if (v == null) System.out.println("  No se encontro vehiculo con placa " + placa);
         else v.imprimirDetalle();
     }
 
