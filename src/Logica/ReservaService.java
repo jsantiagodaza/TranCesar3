@@ -25,7 +25,37 @@ public class ReservaService {
             personaService.getPasajerosCargados(),
             vehiculoService.listarTodos()
     );
+    
+        public String crearReserva(String cedulaPasajero, String placaVehiculo,
+                           LocalDateTime fechaViaje,
+                           PersonaService personaService) {
+
+    Pasajero pasajero = personaService.buscarPasajeroPorCedula(cedulaPasajero);
+    if (pasajero == null)
+        return "ERROR: No se encontro pasajero con cedula " + cedulaPasajero;
+
+    Vehiculo vehiculo = vehiculoService.buscarPorPlaca(placaVehiculo);
+    if (vehiculo == null)
+        return "ERROR: No se encontro vehiculo con placa " + placaVehiculo;
+
+    if (!vehiculo.isDisponible())
+        return "ERROR: El vehiculo " + placaVehiculo + " no esta disponible.";
+
+    if (!vehiculo.tieneCupos())
+        return "ERROR: El vehiculo " + placaVehiculo
+               + " no tiene cupos disponibles (tickets + reservas activas).";
 }
+    
+    
+    
+    
+    
+    
+    
+}
+    
+    
+    
     
     
     
