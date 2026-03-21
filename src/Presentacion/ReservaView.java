@@ -135,8 +135,16 @@ public class ReservaView {
         System.out.println(reservaService.cancelarReserva(codigo));
     }
 
-                   private void verificarVencidas() {
-                   }
+                  private void verificarVencidas() {
+        System.out.println("\n--- Verificando reservas vencidas (+24h) ---");
+        int canceladas = reservaService.verificarVencidas();
+        if (canceladas == 0)
+            System.out.println("  No se encontraron reservas vencidas.");
+        else
+            System.out.println("  Se cancelaron " + canceladas
+                               + " reserva(s) vencida(s). Cupos liberados.");
+    }
+
                     
     private int leerInt() {
         try { return Integer.parseInt(sc.nextLine().trim()); }
